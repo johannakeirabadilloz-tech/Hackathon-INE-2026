@@ -1,26 +1,51 @@
-# Centro de Inteligencia y Visualizaci?n de Informaci?n para el An?lisis Electoral
+# Centro de Inteligencia y Visualización de Información para el Análisis Electoral
 
-Proyecto para el **Hackathon INE 2026**. El nombre es provisional.
+Proyecto para el **Hackathon INE 2026 · Reto 1: Perfiles ciudadanos de participación**. El nombre del proyecto es provisional.
 
-El proyecto busca facilitar la exploraci?n y el an?lisis de la participaci?n electoral mediante un centro de extracci?n, transformaci?n y carga (ETL), normalizaci?n, limpieza y visualizaci?n de datos abiertos del Instituto Nacional Electoral (INE).
+Buscamos identificar quiénes participan, qué características comparten, dónde se presentan diferencias y qué estrategias podrían contribuir a aumentar la participación ciudadana en México.
 
-## Objetivo
+## Contexto del reto
 
-Transformar los archivos originales en informaci?n consistente y trazable para analizar la participaci?n por a?o, entidad federativa, municipio, sexo, grupo de edad y tipo de secci?n electoral.
+El Reto 1 propone estudiar los patrones electorales de distintos grupos poblacionales para construir perfiles que ayuden a comprender su participación y plantear estrategias para incentivarla. Nuestro proyecto aborda este reto mediante análisis histórico, territorial y demográfico.
 
-## Alcance previsto
+Fuente oficial: [Hackathon INE 2026](https://www.ine.mx/hackathon-2026/).
 
-- Ingesta de archivos CSV contenidos en los ZIP originales.
-- Limpieza y normalizaci?n de textos, tipos de datos y valores faltantes.
-- Validaci?n de conteos y generaci?n de reportes de calidad.
-- Consolidaci?n municipal y agrupaci?n anal?tica en tres regiones: norte, centro y sur.
-- Visualizaci?n de patrones y comparaciones de participaci?n electoral.
+## Objetivo general
 
-Estas funcionalidades describen el alcance del proyecto; este repositorio contiene por ahora los archivos fuente y esta documentaci?n.
+Desarrollar una plataforma inteligente de análisis de participación electoral, mediante técnicas de ciencia de datos, estadística y aprendizaje automático, que permita identificar, caracterizar y comparar perfiles de participación y abstención ciudadana en México, utilizando información histórica de los procesos electorales de 2009 a 2024, con el propósito de generar hallazgos y recomendaciones basadas en evidencia que contribuyan al diseño de estrategias focalizadas para fortalecer la participación democrática.
+
+## Objetivos específicos
+
+1. Identificar perfiles de participación electoral mediante variables sociodemográficas y territoriales, como sexo, grupo de edad, entidad federativa, municipio y tipo de sección electoral.
+2. Analizar patrones históricos de participación y abstención electoral durante el periodo 2009–2024.
+3. Comparar diferencias regionales entre norte, centro y sur, identificando características comunes y diferencias entre los grupos poblacionales.
+4. Implementar técnicas de segmentación, como clustering, para identificar grupos con comportamientos electorales similares.
+5. Generar hallazgos e interpretaciones sobre qué grupos presentan mayores o menores tasas de participación y cómo varían territorialmente.
+6. Proponer estrategias focalizadas de educación cívica, comunicación y promoción de la participación ciudadana, sustentadas en los perfiles identificados.
+
+## Enfoque técnico previsto
+
+1. **Datos históricos del INE:** seis procesos electorales de 2009 a 2024 y un dataset maestro local de 546,968 registros agregados.
+2. **Procesamiento y análisis:** ETL, normalización, limpieza, validación de conteos, construcción de indicadores y segmentación territorial y demográfica.
+3. **Construcción de perfiles ciudadanos:** estadística multivariada y aprendizaje no supervisado para explorar grupos con comportamientos similares.
+4. **Exploración interactiva:** visualizaciones, comparación de perfiles y presentación de hallazgos.
+5. **Recomendaciones estratégicas:** propuestas diferenciadas de educación cívica, comunicación y promoción de la participación, sustentadas en los resultados del análisis.
+
+Estas funcionalidades describen el alcance previsto; el repositorio contiene por ahora los archivos fuente y la documentación del proyecto.
+
+## Preguntas que buscamos responder
+
+- ¿Qué perfiles demográficos presentan menor participación electoral?
+- ¿Existen patrones similares entre municipios de distintas entidades?
+- ¿La participación de mujeres y hombres muestra diferencias según la edad y la región?
+- ¿Qué características distinguen a los territorios con mayor participación?
+- ¿Qué estrategias podrían ser más pertinentes para cada perfil identificado?
+
+Los perfiles serán **estadísticos y agregados**. Las unidades de análisis son grupos poblacionales y territorios; los resultados no describen el comportamiento de votantes individuales. Las diferencias y asociaciones observadas no permiten atribuir causas sin evidencia adicional.
 
 ## Datos originales
 
-Se incluyen seis paquetes de Conteos Censales de Participaci?n Ciudadana del INE, correspondientes a **2009, 2012, 2015, 2018, 2021 y 2024**. Cada paquete contiene 32 CSV, uno por entidad federativa, y un diccionario de campos.
+Se incluyen seis paquetes de Conteos Censales de Participación Ciudadana del INE, correspondientes a **2009, 2012, 2015, 2018, 2021 y 2024**. Cada paquete contiene 32 CSV, uno por entidad federativa, y un diccionario de campos.
 
 Los ZIP se conservan sin modificaciones en `data/raw/`.
 
@@ -29,19 +54,19 @@ Los ZIP se conservan sin modificaciones en `data/raw/`.
 | LN | Lista nominal |
 | SV | Registros con marca de voto |
 | NV | Registros sin marca de voto |
-| NS | Registros con participaci?n no especificada |
+| NS | Registros con participación no especificada |
 
-La validaci?n de consistencia considera `LN = SV + NV + NS`. Los registros no especificados deben conservarse como una categor?a independiente al analizar la participaci?n.
+La validación de consistencia considera `LN = SV + NV + NS`. Los registros no especificados se conservan como una categoría independiente y no se contabilizan como abstención.
 
-Seg?n los diccionarios incluidos en los paquetes, la fuente son los cuadernillos de las listas nominales; no contempla la participaci?n en casillas especiales ni el voto desde el extranjero. Estos conteos no equivalen a resultados por partido o candidatura.
+Según los diccionarios incluidos en los paquetes, la fuente son los cuadernillos de las listas nominales; no contempla la participación en casillas especiales ni el voto desde el extranjero. Estos conteos no equivalen a resultados por partido o candidatura.
 
-## Criterios de an?lisis
+## Criterios de análisis
 
-La regionalizaci?n en norte, centro y sur es una **propuesta propia del proyecto basada en informaci?n del INEGI**; no constituye una divisi?n oficial del INEGI. La referencia espec?fica utilizada queda pendiente de documentar.
+La regionalización en norte, centro y sur es una **propuesta propia del proyecto basada en información del INEGI**; no constituye una división oficial del INEGI. La referencia específica utilizada queda pendiente de documentar.
 
-En el maestro local, la participaci?n se calcula como `SV / (SV + NV) ? 100`. Si el denominador es cero, el porcentaje queda sin valor. Para consolidar grupos se suman primero los conteos y despu?s se recalcula el porcentaje.
+En el maestro local, la participación se calcula como `SV / (SV + NV) × 100`: participación entre registros con situación especificada. Si el denominador es cero, el porcentaje queda sin valor. Para consolidar grupos se suman primero los conteos y después se recalcula el porcentaje. El porcentaje de registros no especificados se analiza por separado para contextualizar los resultados.
 
-## Organizaci?n
+## Organización
 
 ```text
 data/
@@ -54,7 +79,7 @@ El dataset maestro y el diccionario de regiones permanecen exclusivamente en el 
 
 ## Equipo desarrollador
 
-- Valeria Jahzeel Casta?on Hernandez
+- Valeria Jahzeel Castañon Hernandez
 - Johanna Keira Badillo Zavala
 - Ernesto Mendieta Cuecuecha
 - Rodrigo Paredes Urrusquieta
