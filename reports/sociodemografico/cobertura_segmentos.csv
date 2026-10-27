@@ -1,0 +1,161 @@
+region,sexo,grupo_edad,tipo_seccion,elegible,elecciones_disponibles,minimo_especificados,maximo_ns_pct
+centro,hombre,18-24,mixta,True,6,312885.0,7.25566541254703
+centro,hombre,18-24,rural,True,6,460955.0,8.113396606248852
+centro,hombre,18-24,urbana,True,6,2205078.0,5.6227890886017144
+centro,hombre,25-34,mixta,True,6,507114.0,7.24031007751938
+centro,hombre,25-34,rural,True,6,703858.0,8.144190513974296
+centro,hombre,25-34,urbana,True,6,3400717.0,5.508498829941711
+centro,hombre,35-44,mixta,True,6,419717.0,7.216715444195643
+centro,hombre,35-44,rural,True,6,558006.0,7.917698384624455
+centro,hombre,35-44,urbana,True,6,2917706.0,5.630982549028803
+centro,hombre,45-54,mixta,True,6,276583.0,6.958730359058497
+centro,hombre,45-54,rural,True,6,384672.0,7.794863595146777
+centro,hombre,45-54,urbana,True,6,2152602.0,5.548320559071616
+centro,hombre,55-64,mixta,True,6,165689.0,6.889158034827798
+centro,hombre,55-64,rural,True,6,261580.0,7.824125793056932
+centro,hombre,55-64,urbana,True,6,1311030.0,5.3334552600537375
+centro,hombre,65-74,mixta,True,6,104488.0,6.773986311185787
+centro,hombre,65-74,rural,True,6,183541.0,7.864466059883929
+centro,hombre,65-74,urbana,True,6,725344.0,5.174357006762383
+centro,hombre,75-84,mixta,True,6,58190.0,6.674919294157625
+centro,hombre,75-84,rural,True,6,112022.0,7.640168719107362
+centro,hombre,75-84,urbana,True,6,359510.0,5.082239881722417
+centro,hombre,85+,mixta,True,6,21504.0,6.810581730291693
+centro,hombre,85+,rural,True,6,39077.0,7.700148984552654
+centro,hombre,85+,urbana,True,6,111480.0,5.170862289305132
+centro,mujer,18-24,mixta,True,6,340770.0,7.354727372723086
+centro,mujer,18-24,rural,True,6,519378.0,8.19509280748611
+centro,mujer,18-24,urbana,True,6,2261583.0,5.582231331970753
+centro,mujer,25-34,mixta,True,6,554718.0,7.390372331048849
+centro,mujer,25-34,rural,True,6,750469.0,8.15816783579642
+centro,mujer,25-34,urbana,True,6,3544552.0,5.500411238474325
+centro,mujer,35-44,mixta,True,6,461781.0,7.315580925776921
+centro,mujer,35-44,rural,True,6,597865.0,8.023535946962607
+centro,mujer,35-44,urbana,True,6,3234443.0,5.603203097798789
+centro,mujer,45-54,mixta,True,6,299322.0,7.085679383878587
+centro,mujer,45-54,rural,True,6,420832.0,7.959116744708638
+centro,mujer,45-54,urbana,True,6,2441864.0,5.47851826244774
+centro,mujer,55-64,mixta,True,6,178998.0,6.976241213701854
+centro,mujer,55-64,rural,True,6,279164.0,7.957688632591823
+centro,mujer,55-64,urbana,True,6,1515893.0,5.272804955319782
+centro,mujer,65-74,mixta,True,6,114376.0,6.895087073481523
+centro,mujer,65-74,rural,True,6,194485.0,7.950984539152804
+centro,mujer,65-74,urbana,True,6,885576.0,5.110118525141121
+centro,mujer,75-84,mixta,True,6,66452.0,6.8419046812474855
+centro,mujer,75-84,rural,True,6,123567.0,7.960123018820769
+centro,mujer,75-84,urbana,True,6,486447.0,5.0564585512482285
+centro,mujer,85+,mixta,True,6,25543.0,7.012987012987013
+centro,mujer,85+,rural,True,6,47266.0,7.768868366041621
+centro,mujer,85+,urbana,True,6,169877.0,4.903276973278741
+centro,no binario,18-24,mixta,False,1,2.0,0.0
+centro,no binario,18-24,urbana,False,1,30.0,6.25
+centro,no binario,25-34,urbana,False,1,30.0,0.0
+centro,no binario,35-44,urbana,False,1,6.0,0.0
+centro,no binario,45-54,urbana,False,1,2.0,0.0
+norte,hombre,18-24,mixta,True,6,163597.0,8.183321373974355
+norte,hombre,18-24,rural,True,6,202798.0,8.341510455437504
+norte,hombre,18-24,urbana,True,6,1250225.0,9.193464061444292
+norte,hombre,25-34,mixta,True,6,283306.0,8.346128298106345
+norte,hombre,25-34,rural,True,6,303305.0,8.515765915219372
+norte,hombre,25-34,urbana,True,6,1894017.0,9.136346228324005
+norte,hombre,35-44,mixta,True,6,241801.0,8.237038209580401
+norte,hombre,35-44,rural,True,6,260489.0,8.776923839237812
+norte,hombre,35-44,urbana,True,6,1704341.0,9.173150203775615
+norte,hombre,45-54,mixta,True,6,144099.0,8.444025157232705
+norte,hombre,45-54,rural,True,6,204543.0,8.849131919395951
+norte,hombre,45-54,urbana,True,6,1218086.0,9.208928379699246
+norte,hombre,55-64,mixta,True,6,83092.0,8.676406729328047
+norte,hombre,55-64,rural,True,6,150635.0,9.001198280115599
+norte,hombre,55-64,urbana,True,6,704779.0,8.978799711339555
+norte,hombre,65-74,mixta,True,6,56818.0,8.96859857781134
+norte,hombre,65-74,rural,True,6,118410.0,8.98307243857296
+norte,hombre,65-74,urbana,True,6,403978.0,8.854977762126488
+norte,hombre,75-84,mixta,True,6,29749.0,9.32924672875162
+norte,hombre,75-84,rural,True,6,73698.0,8.916414413787505
+norte,hombre,75-84,urbana,True,6,182764.0,8.782503766966983
+norte,hombre,85+,mixta,True,6,8954.0,9.563881164934875
+norte,hombre,85+,rural,True,6,22737.0,8.349399838298401
+norte,hombre,85+,urbana,True,6,46511.0,8.52524230543707
+norte,mujer,18-24,mixta,True,6,170550.0,8.23743964835302
+norte,mujer,18-24,rural,True,6,213133.0,8.385692439416077
+norte,mujer,18-24,urbana,True,6,1241308.0,9.229828178249289
+norte,mujer,25-34,mixta,True,6,292119.0,8.24416036409879
+norte,mujer,25-34,rural,True,6,305994.0,8.425749258813514
+norte,mujer,25-34,urbana,True,6,1869938.0,9.039232657964
+norte,mujer,35-44,mixta,True,6,242573.0,8.16350443913651
+norte,mujer,35-44,rural,True,6,262314.0,8.468721212628758
+norte,mujer,35-44,urbana,True,6,1723314.0,9.070202218916013
+norte,mujer,45-54,mixta,True,6,143819.0,8.353831834726677
+norte,mujer,45-54,rural,True,6,199428.0,8.71917202759344
+norte,mujer,45-54,urbana,True,6,1300901.0,9.077407199657195
+norte,mujer,55-64,mixta,True,6,82922.0,8.499099569718048
+norte,mujer,55-64,rural,True,6,141676.0,8.960614311918244
+norte,mujer,55-64,urbana,True,6,781102.0,8.852684313858235
+norte,mujer,65-74,mixta,True,6,54623.0,9.064835081892973
+norte,mujer,65-74,rural,True,6,104069.0,8.788588708337487
+norte,mujer,65-74,urbana,True,6,468132.0,8.832742089598137
+norte,mujer,75-84,mixta,True,6,28761.0,9.032758742327681
+norte,mujer,75-84,rural,True,6,64520.0,8.760590219658537
+norte,mujer,75-84,urbana,True,6,226560.0,8.820505581630613
+norte,mujer,85+,mixta,True,6,8944.0,9.37686641449333
+norte,mujer,85+,rural,True,6,20459.0,8.339038304808476
+norte,mujer,85+,urbana,True,6,63127.0,8.590504451038576
+norte,no binario,18-24,mixta,False,1,2.0,0.0
+norte,no binario,18-24,urbana,False,1,9.0,0.0
+norte,no binario,25-34,urbana,False,1,11.0,8.333333333333334
+norte,no binario,35-44,urbana,False,1,3.0,0.0
+norte,no binario,55-64,urbana,False,1,1.0,0.0
+sur,hombre,18-24,mixta,True,6,190508.0,10.184147378081347
+sur,hombre,18-24,rural,True,6,428769.0,9.227465402616643
+sur,hombre,18-24,urbana,True,6,694312.0,10.402913479897638
+sur,hombre,25-34,mixta,True,6,299661.0,10.275405804785056
+sur,hombre,25-34,rural,True,6,635553.0,9.302416478566334
+sur,hombre,25-34,urbana,True,6,1039887.0,10.604567915243921
+sur,hombre,35-44,mixta,True,6,245274.0,10.25585865665531
+sur,hombre,35-44,rural,True,6,504430.0,9.353504172304916
+sur,hombre,35-44,urbana,True,6,852251.0,10.945279870260826
+sur,hombre,45-54,mixta,True,6,175621.0,9.925903128482762
+sur,hombre,45-54,rural,True,6,377761.0,9.411242427120351
+sur,hombre,45-54,urbana,True,6,652335.0,10.207448238773864
+sur,hombre,55-64,mixta,True,6,113066.0,10.144509662581951
+sur,hombre,55-64,rural,True,6,261897.0,9.315407201359914
+sur,hombre,55-64,urbana,True,6,397229.0,9.639366496994887
+sur,hombre,65-74,mixta,True,6,76863.0,10.039697645331447
+sur,hombre,65-74,rural,True,6,181159.0,9.13741130640449
+sur,hombre,65-74,urbana,True,6,232874.0,9.50896937142617
+sur,hombre,75-84,mixta,True,6,42198.0,10.506879616091178
+sur,hombre,75-84,rural,True,6,103710.0,9.132586570683877
+sur,hombre,75-84,urbana,True,6,117147.0,9.476142809476142
+sur,hombre,85+,mixta,True,6,14874.0,10.067997367843825
+sur,hombre,85+,rural,True,6,33913.0,9.30798606739687
+sur,hombre,85+,urbana,True,6,36359.0,9.698208110657026
+sur,mujer,18-24,mixta,True,6,211091.0,10.266171928620453
+sur,mujer,18-24,rural,True,6,475089.0,9.404689159501258
+sur,mujer,18-24,urbana,True,6,739416.0,10.275579163578067
+sur,mujer,25-34,mixta,True,6,328150.0,10.260752212275854
+sur,mujer,25-34,rural,True,6,675230.0,9.36901081054845
+sur,mujer,25-34,urbana,True,6,1107774.0,10.459031499308907
+sur,mujer,35-44,mixta,True,6,265274.0,10.278518472849457
+sur,mujer,35-44,rural,True,6,538385.0,9.375660959257857
+sur,mujer,35-44,urbana,True,6,969607.0,10.458610031407598
+sur,mujer,45-54,mixta,True,6,186537.0,9.974252161353123
+sur,mujer,45-54,rural,True,6,394839.0,9.380097708038974
+sur,mujer,45-54,urbana,True,6,730645.0,9.738957225099945
+sur,mujer,55-64,mixta,True,6,119987.0,10.32408135039135
+sur,mujer,55-64,rural,True,6,266090.0,9.135712741164316
+sur,mujer,55-64,urbana,True,6,450453.0,9.488897120866003
+sur,mujer,65-74,mixta,True,6,83158.0,10.439794181994976
+sur,mujer,65-74,rural,True,6,178091.0,8.94809064165343
+sur,mujer,65-74,urbana,True,6,280650.0,9.329822570540326
+sur,mujer,75-84,mixta,True,6,46147.0,10.35234413582875
+sur,mujer,75-84,rural,True,6,101338.0,8.902194678719537
+sur,mujer,75-84,urbana,True,6,149138.0,9.441583414375387
+sur,mujer,85+,mixta,True,6,16829.0,9.836143887641523
+sur,mujer,85+,rural,True,6,34145.0,8.717867781964529
+sur,mujer,85+,urbana,True,6,46856.0,9.32697054467665
+sur,no binario,18-24,mixta,False,1,1.0,0.0
+sur,no binario,18-24,rural,False,1,1.0,0.0
+sur,no binario,18-24,urbana,False,1,1.0,0.0
+sur,no binario,25-34,urbana,False,1,1.0,0.0
+sur,no binario,35-44,urbana,False,1,1.0,0.0
+sur,no binario,45-54,urbana,False,1,1.0,0.0

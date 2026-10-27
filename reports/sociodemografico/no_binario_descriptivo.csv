@@ -1,0 +1,17 @@
+region,sexo,grupo_edad,tipo_seccion,anio,lista_nominal,si_votaron,no_votaron,no_especificados,especificados,participacion_pct,ns_pct
+centro,no binario,18-24,mixta,2024,2,2,0,0,2,100.0,0.0
+centro,no binario,18-24,urbana,2024,32,25,5,2,30,83.33333333333333,6.25
+centro,no binario,25-34,urbana,2024,30,20,10,0,30,66.66666666666667,0.0
+centro,no binario,35-44,urbana,2024,6,6,0,0,6,100.0,0.0
+centro,no binario,45-54,urbana,2024,2,1,1,0,2,50.0,0.0
+norte,no binario,18-24,mixta,2024,2,1,1,0,2,50.0,0.0
+norte,no binario,18-24,urbana,2024,9,6,3,0,9,66.66666666666667,0.0
+norte,no binario,25-34,urbana,2024,12,9,2,1,11,81.81818181818181,8.333333333333334
+norte,no binario,35-44,urbana,2024,3,3,0,0,3,100.0,0.0
+norte,no binario,55-64,urbana,2024,1,1,0,0,1,100.0,0.0
+sur,no binario,18-24,mixta,2024,1,1,0,0,1,100.0,0.0
+sur,no binario,18-24,rural,2024,1,1,0,0,1,100.0,0.0
+sur,no binario,18-24,urbana,2024,1,1,0,0,1,100.0,0.0
+sur,no binario,25-34,urbana,2024,1,1,0,0,1,100.0,0.0
+sur,no binario,35-44,urbana,2024,1,0,1,0,1,0.0,0.0
+sur,no binario,45-54,urbana,2024,1,1,0,0,1,100.0,0.0

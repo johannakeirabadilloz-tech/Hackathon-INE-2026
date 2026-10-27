@@ -1,6 +1,9 @@
 # Datos de trabajo exclusivamente locales
 /data/processed/
 /data/catalogs/
+/reports/local/
+/.analysis_deps/
+/.mplconfig/
 
 # Archivos temporales de Python y editores
 __pycache__/

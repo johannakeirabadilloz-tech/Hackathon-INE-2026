@@ -31,7 +31,18 @@ Desarrollar una plataforma inteligente de análisis de participación electoral,
 4. **Exploración interactiva:** visualizaciones, comparación de perfiles y presentación de hallazgos.
 5. **Recomendaciones estratégicas:** propuestas diferenciadas de educación cívica, comunicación y promoción de la participación, sustentadas en los resultados del análisis.
 
-Estas funcionalidades describen el alcance previsto; el repositorio contiene por ahora los archivos fuente y la documentación del proyecto.
+La etapa de exploración ya cuenta con una segmentación sociodemográfica y resultados publicados. La plataforma interactiva y la validación adicional siguen dentro del alcance previsto.
+
+## Resultados de la segmentación sociodemográfica
+
+El análisis agrupa 144 segmentos definidos por región, sexo, grupo de edad y tipo de sección, comparando su participación en seis elecciones. Se presentan dos perfiles por región, con nombres descriptivos, composición exacta e indicadores históricos.
+
+- [Seis fichas completas: dos perfiles por región](reports/sociodemografico/fichas_dos_perfiles_por_region.md).
+- [Informe con gráficas y metodología](reports/sociodemografico/informe_sociodemografico.html). Para visualizarlo, descargar el repositorio y abrir este HTML en un navegador, conservando los PNG en la misma carpeta.
+- [Todos los plots y tablas de resultados](reports/sociodemografico/).
+- [Instrucciones para reproducir el análisis](scripts/README.md).
+
+Los archivos CSV de esta carpeta son resultados agregados del análisis; el dataset maestro y el diccionario de trabajo permanecen locales. Los perfiles son exploratorios y no identifican personas ni causas de participación. La categoría no binario se describe aparte por disponer únicamente de registros de 2024.
 
 ## Preguntas que buscamos responder
 
@@ -73,6 +84,10 @@ data/
   raw/          # ZIP originales incluidos en el repositorio
   processed/    # Maestro y datos procesados: solo locales, ignorados por Git
   catalogs/     # Diccionarios de trabajo: solo locales, ignorados por Git
+reports/
+  sociodemografico/  # Resultados autorizados para publicación
+  local/            # Resultados de ejecución local, ignorados por Git
+scripts/            # Análisis reproducible
 ```
 
 El dataset maestro y el diccionario de regiones permanecen exclusivamente en el entorno local y no se publican en este repositorio.

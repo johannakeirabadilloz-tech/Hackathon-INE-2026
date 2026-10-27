@@ -1,0 +1,48 @@
+{
+  "unidad": "región × sexo × grupo de edad × tipo de sección",
+  "variables_clustering": [
+    "participación especificada en 2009",
+    "participación especificada en 2012",
+    "participación especificada en 2015",
+    "participación especificada en 2018",
+    "participación especificada en 2021",
+    "participación especificada en 2024"
+  ],
+  "peso": "igual por segmento; los conteos solo ponderan indicadores descriptivos",
+  "escala": "StandardScaler por elección dentro de cada región",
+  "filtros": "seis elecciones presentes, >=100 especificados y NS<=20% en cada elección",
+  "gmm": "covarianza diagonal, regularización 0.0001, diez inicializaciones",
+  "comparacion": "k=2..5; selección k=2 por silhouette con tamaño mínimo 10%, ARI medio >=0.75 y mínimo >=0.60 en submuestras y omisión de elección, cuando hay candidatos; umbrales exploratorios",
+  "estabilidad": "diez submuestras sin reemplazo del 80%, recalculando escala; seis pruebas omitiendo una elección; escala robusta",
+  "semilla": 42,
+  "segmentos_elegibles": 144,
+  "segmentos_total": 160,
+  "modelos_elegidos": [
+    {
+      "region": "norte",
+      "algoritmo": "kmeans",
+      "silhouette": 0.6167705093018828,
+      "cumple_filtros_estabilidad": true
+    },
+    {
+      "region": "centro",
+      "algoritmo": "ward",
+      "silhouette": 0.5959315089878583,
+      "cumple_filtros_estabilidad": true
+    },
+    {
+      "region": "sur",
+      "algoritmo": "kmeans",
+      "silhouette": 0.5962050370186758,
+      "cumple_filtros_estabilidad": true
+    }
+  ],
+  "limites": [
+    "sin seguimiento individual",
+    "sin escolaridad",
+    "agregación regional oculta variación local",
+    "tasas observadas no implican causas",
+    "segmentos no son cohortes de las mismas personas",
+    "falta cotejar maestro contra originales y validar en otra representación"
+  ]
+}
