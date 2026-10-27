@@ -1,0 +1,9 @@
+# Datos de trabajo exclusivamente locales
+/data/processed/
+/data/catalogs/
+
+# Archivos temporales de Python y editores
+__pycache__/
+*.py[cod]
+.venv/
+~$*
