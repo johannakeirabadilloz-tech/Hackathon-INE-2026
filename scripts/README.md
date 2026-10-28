@@ -13,7 +13,7 @@ python scripts/perfiles_sociodemograficos.py
 
 En esta sesión se instalaron dependencias en `.analysis_deps/`; el script detecta esa carpeta automáticamente. Si no existe, usa el entorno Python activo.
 
-Entrada: `data/processed/dataset_maestro_municipal_2009_2024_con_region.csv` (solo local).
+Entrada: `data/processed/civia_dataset_maestro_municipal_2009_2024_con_region.csv` (solo local).
 
 Informe: `reports/local/sociodemografico/informe_sociodemografico.html`. Abrir en un navegador; requiere los siete PNG de la misma carpeta. También se generan tablas CSV de indicadores, composición, asignaciones, comparación de algoritmos, narrativas y estrategias, y parámetros en JSON.
 

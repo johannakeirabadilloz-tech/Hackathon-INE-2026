@@ -46,7 +46,8 @@ def save(fig, name):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    d = pd.read_csv(ROOT / 'data/processed/dataset_maestro_municipal_2009_2024_con_region.csv')
+    d = pd.read_csv(ROOT / 'data/processed/civia_dataset_maestro_municipal_2009_2024_con_region.csv')
+    d[['sexo', 'tipo_seccion']] = d[['sexo', 'tipo_seccion']].apply(lambda s: s.str.lower())  # el maestro actual trae 'Hombre', 'Urbana'…
     assert (d.lista_nominal == d.si_votaron + d.no_votaron + d.no_especificados).all()
     assert not d.duplicated(['anio', 'entidad_clave', 'municipio_clave', 'sexo_codigo', 'grupo_edad', 'tipo_seccion_codigo']).any()
     a = d.groupby([*KEY, 'anio'], observed=True)[COUNTS].sum()
@@ -65,9 +66,9 @@ def main():
     special = a.reset_index().query("sexo == 'no binario'")
     special.to_csv(OUT / 'no_binario_descriptivo.csv', index=False)
     metrics, assignments, totals, compositions, differences = [], [], [], [], []
-    chosen = []
+    chosen, rules = [], []
     for region in ['norte', 'centro', 'sur']:
-        raw = trajectories.loc[eligible].xs(region, level='region', drop_level=False)
+        raw =trajectories.loc[eligible].xs(region, level='region', drop_level=False)
         X = StandardScaler().fit_transform(raw)
         fits = {}
         for name in ['kmeans', 'ward', 'gmm']:
@@ -114,6 +115,12 @@ def main():
         assigned = raw.rename(columns=lambda y: 'participacion_' + str(y)).join(profile)
         assigned['algoritmo'] = best.algoritmo
         assignments.append(assigned)
+        # ¿Cuánto del perfil lo reproduce una regla simple "categoría -> perfil mayoritario"? Si edad sola acierta casi todo,
+        # el agrupamiento aporta poco más que rangos de edad. Referencia: proporción del perfil más grande.
+        key = raw.index.to_frame(index=False).assign(perfil=profile.to_numpy())
+        for cols in (['grupo_edad'], ['sexo'], ['tipo_seccion'], ['grupo_edad', 'tipo_seccion'], ['grupo_edad', 'sexo']):
+            hits = key.perfil.eq(key.groupby(cols).perfil.transform(lambda s: s.mode()[0])).mean()
+            rules.append(dict(region=region, regla='+'.join(cols), acierto=hits, referencia=key.perfil.value_counts(normalize=True).max()))
         chosen.append(dict(region=region, algoritmo=best.algoritmo, silhouette=float(best.silhouette),
                            cumple_filtros_estabilidad=not stable.empty))
         cells = a.join(profile, how='inner').reset_index()
@@ -177,6 +184,7 @@ def main():
     comp = pd.DataFrame(compositions)
     scores.to_csv(OUT / 'comparacion_algoritmos.csv', index=False)
     assigned.to_csv(OUT / 'perfiles_segmentos.csv')
+    pd.DataFrame(rules).to_csv(OUT / 'perfil_vs_variables.csv', index=False)
     total.to_csv(OUT / 'indicadores_perfil_eleccion.csv', index=False)
     comp.to_csv(OUT / 'composicion_perfiles_2024.csv', index=False)
     # Seis fichas con pertenencia exhaustiva: exactamente dos perfiles por región.
