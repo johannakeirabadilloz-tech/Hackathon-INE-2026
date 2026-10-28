@@ -4,6 +4,7 @@
 /reports/local/
 /.analysis_deps/
 /.mplconfig/
+/data/raw/*
 
 # Archivos temporales de Python y editores
 __pycache__/
