@@ -1,0 +1,28 @@
+{
+ "ref_tabla_media_entidad_edad_sexo_tipo_pres": {
+  "r2_pond": 0.6203751980596364,
+  "mae_pts_pond": 6.559123366123529,
+  "mae_pts_simple": 9.565281301047197
+ },
+ "ref_misma_celda_2018": {
+  "r2_pond": 0.7389706592788389,
+  "mae_pts_pond": 5.382626042650762,
+  "mae_pts_simple": 7.805237472931432
+ },
+ "lgbm_sin_municipio": {
+  "r2_pond": 0.618324740772193,
+  "mae_pts_pond": 6.603484901224196,
+  "mae_pts_simple": 9.583180065017979,
+  "arboles": 165
+ },
+ "lgbm_con_municipio": {
+  "r2_pond": 0.7420803567550083,
+  "mae_pts_pond": 5.369984356402586,
+  "mae_pts_simple": 7.699849899364241,
+  "arboles": 451
+ },
+ "n_celdas": {
+  "entrenamiento": 394961,
+  "prueba_2024": 79784
+ }
+}

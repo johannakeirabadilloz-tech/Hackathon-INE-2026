@@ -1,0 +1,25 @@
+{
+ "lgbm": {
+  "r2_pond": 0.803,
+  "mae_pts_pond": 4.69,
+  "arboles": 174
+ },
+ "ref_tabla_medias_con_edad_simple": {
+  "r2_pond": 0.804,
+  "mae_pts_pond": 4.67
+ },
+ "ref_misma_celda_2018": {
+  "r2_pond": 0.8,
+  "mae_pts_pond": 4.72
+ },
+ "n": {
+  "entrenamiento": 78500,
+  "prueba_2024": 15718
+ },
+ "mae_pts_por_tramo": {
+  "18-34": 5.28,
+  "35-64": 4.3,
+  "65-84": 4.27,
+  "85-99": 6.23
+ }
+}

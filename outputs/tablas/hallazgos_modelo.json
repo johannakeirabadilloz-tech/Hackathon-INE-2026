@@ -1,0 +1,193 @@
+{
+ "disp": {
+  "pearson_chi2_sobre_gl_efectos_principales": 956.764023694041,
+  "pearson_chi2_sobre_gl_final": 716.4080821028969,
+  "D2_efectos_principales": 0.8036309106850538,
+  "D2_final": 0.8538367836604688,
+  "celdas": 8064,
+  "parametros_final": 97,
+  "n_entidades": 32
+ },
+ "efectos": {
+  "Mujeres vs Hombres": {
+   "efecto_pp": 7.75,
+   "ic95_inf": 7.18,
+   "ic95_sup": 8.37,
+   "replicas_validas": 150
+  },
+  "Edad 18-24 vs 30-39": {
+   "efecto_pp": -3.39,
+   "ic95_inf": -4.18,
+   "ic95_sup": -2.84,
+   "replicas_validas": 150
+  },
+  "Edad 25-29 vs 30-39": {
+   "efecto_pp": -6.43,
+   "ic95_inf": -6.97,
+   "ic95_sup": -6.05,
+   "replicas_validas": 150
+  },
+  "Edad 40-49 vs 30-39": {
+   "efecto_pp": 8.35,
+   "ic95_inf": 8.12,
+   "ic95_sup": 8.57,
+   "replicas_validas": 150
+  },
+  "Edad 50-59 vs 30-39": {
+   "efecto_pp": 13.92,
+   "ic95_inf": 13.4,
+   "ic95_sup": 14.35,
+   "replicas_validas": 150
+  },
+  "Edad 60-69 vs 30-39": {
+   "efecto_pp": 17.96,
+   "ic95_inf": 16.99,
+   "ic95_sup": 18.8,
+   "replicas_validas": 150
+  },
+  "Edad 70+ vs 30-39": {
+   "efecto_pp": 8.68,
+   "ic95_inf": 7.15,
+   "ic95_sup": 10.06,
+   "replicas_validas": 150
+  },
+  "Sección rural vs urbana": {
+   "efecto_pp": 5.38,
+   "ic95_inf": 3.03,
+   "ic95_sup": 7.29,
+   "replicas_validas": 150
+  },
+  "Sección mixta vs urbana": {
+   "efecto_pp": 1.39,
+   "ic95_inf": 0.27,
+   "ic95_sup": 2.64,
+   "replicas_validas": 150
+  },
+  "Elección 2024 vs 2009": {
+   "efecto_pp": 14.44,
+   "ic95_inf": 11.12,
+   "ic95_sup": 17.37,
+   "replicas_validas": 150
+  },
+  "Elección 2024 vs 2012": {
+   "efecto_pp": -3.48,
+   "ic95_inf": -5.12,
+   "ic95_sup": -2.16,
+   "replicas_validas": 150
+  },
+  "Elección 2024 vs 2015": {
+   "efecto_pp": 11.71,
+   "ic95_inf": 8.15,
+   "ic95_sup": 14.51,
+   "replicas_validas": 150
+  },
+  "Elección 2024 vs 2018": {
+   "efecto_pp": -3.35,
+   "ic95_inf": -4.39,
+   "ic95_sup": -2.32,
+   "replicas_validas": 150
+  },
+  "Elección 2024 vs 2021": {
+   "efecto_pp": 7.51,
+   "ic95_inf": 4.94,
+   "ic95_sup": 9.46,
+   "replicas_validas": 150
+  },
+  "Brecha M−H en edad 18-24": {
+   "efecto_pp": 8.61,
+   "ic95_inf": 8.0,
+   "ic95_sup": 9.24,
+   "replicas_validas": 150
+  },
+  "Brecha M−H en edad 25-29": {
+   "efecto_pp": 11.34,
+   "ic95_inf": 10.59,
+   "ic95_sup": 12.21,
+   "replicas_validas": 150
+  },
+  "Brecha M−H en edad 30-39": {
+   "efecto_pp": 11.76,
+   "ic95_inf": 10.99,
+   "ic95_sup": 12.51,
+   "replicas_validas": 150
+  },
+  "Brecha M−H en edad 40-49": {
+   "efecto_pp": 9.69,
+   "ic95_inf": 9.07,
+   "ic95_sup": 10.21,
+   "replicas_validas": 150
+  },
+  "Brecha M−H en edad 50-59": {
+   "efecto_pp": 6.37,
+   "ic95_inf": 5.73,
+   "ic95_sup": 6.82,
+   "replicas_validas": 150
+  },
+  "Brecha M−H en edad 60-69": {
+   "efecto_pp": 1.2,
+   "ic95_inf": 0.39,
+   "ic95_sup": 1.74,
+   "replicas_validas": 150
+  },
+  "Brecha M−H en edad 70+": {
+   "efecto_pp": -6.08,
+   "ic95_inf": -7.11,
+   "ic95_sup": -5.3,
+   "replicas_validas": 150
+  },
+  "Brecha M−H 2024 en edad 18-24": {
+   "efecto_pp": 10.32,
+   "ic95_inf": 9.69,
+   "ic95_sup": 11.19,
+   "replicas_validas": 150
+  },
+  "Brecha M−H 2024 en edad 25-29": {
+   "efecto_pp": 13.25,
+   "ic95_inf": 12.49,
+   "ic95_sup": 14.18,
+   "replicas_validas": 150
+  },
+  "Brecha M−H 2024 en edad 30-39": {
+   "efecto_pp": 13.48,
+   "ic95_inf": 12.8,
+   "ic95_sup": 14.3,
+   "replicas_validas": 150
+  },
+  "Brecha M−H 2024 en edad 40-49": {
+   "efecto_pp": 11.03,
+   "ic95_inf": 10.45,
+   "ic95_sup": 11.59,
+   "replicas_validas": 150
+  },
+  "Brecha M−H 2024 en edad 50-59": {
+   "efecto_pp": 7.41,
+   "ic95_inf": 6.8,
+   "ic95_sup": 7.89,
+   "replicas_validas": 150
+  },
+  "Brecha M−H 2024 en edad 60-69": {
+   "efecto_pp": 2.2,
+   "ic95_inf": 1.43,
+   "ic95_sup": 2.68,
+   "replicas_validas": 150
+  },
+  "Brecha M−H 2024 en edad 70+": {
+   "efecto_pp": -4.36,
+   "ic95_inf": -5.4,
+   "ic95_sup": -3.59,
+   "replicas_validas": 150
+  },
+  "Rural vs urbana, elección 2015": {
+   "efecto_pp": 10.39,
+   "ic95_inf": 7.56,
+   "ic95_sup": 13.59,
+   "replicas_validas": 150
+  },
+  "Rural vs urbana, elección 2024": {
+   "efecto_pp": 0.9,
+   "ic95_inf": -1.95,
+   "ic95_sup": 3.81,
+   "replicas_validas": 150
+  }
+ }
+}

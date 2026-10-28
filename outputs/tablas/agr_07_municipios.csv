@@ -1,0 +1,13 @@
+metodo,k,silhouette,var_entre,var_entre_corte_nivel,ruido_pct
+kmeans,2,0.35,0.432,0.428,
+kmeans,3,0.28,0.57,0.544,
+kmeans,4,0.238,0.631,0.597,
+kmeans,5,0.255,0.683,0.628,
+kmeans,6,0.24,0.712,0.646,
+ward,2,0.342,0.405,0.428,
+ward,3,0.225,0.528,0.544,
+ward,4,0.213,0.595,0.597,
+ward,5,0.199,0.646,0.628,
+ward,6,0.196,0.678,0.646,
+hdbscan mcs=20,2,,,,57.5
+hdbscan mcs=50,0,,,,100.0

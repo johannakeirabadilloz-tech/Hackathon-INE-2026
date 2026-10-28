@@ -1,0 +1,25 @@
+{
+ "filas_originales": 54872712,
+ "filas_maestro": 546968,
+ "fuera_del_maestro_por_diseno": {
+  "edad_menor_18": 0,
+  "edad_100_o_mas": 127236
+ },
+ "celdas_originales_reagrupadas": 546968,
+ "solo_en_originales": 0,
+ "solo_en_maestro": 0,
+ "celdas_con_diferencia_LN": 0,
+ "suma_diferencia_LN": 0,
+ "celdas_con_diferencia_SV": 0,
+ "suma_diferencia_SV": 0,
+ "celdas_con_diferencia_NV": 0,
+ "suma_diferencia_NV": 0,
+ "celdas_con_diferencia_NS": 0,
+ "suma_diferencia_NS": 0,
+ "celdas_con_diferencia_n": 0,
+ "suma_diferencia_n": 0,
+ "participacion_pct_max_dif_abs": 4.999999987376214e-07,
+ "filas_participacion_nula_con_denominador_cero": 4685,
+ "filas_LN_distinto_de_suma": 0,
+ "llaves_duplicadas_en_maestro": 0
+}

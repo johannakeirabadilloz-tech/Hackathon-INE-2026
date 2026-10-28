@@ -1,0 +1,31 @@
+,efecto_pp,ic95_inf,ic95_sup,replicas_validas
+Mujeres vs Hombres,7.75,7.18,8.37,150
+Edad 18-24 vs 30-39,-3.39,-4.18,-2.84,150
+Edad 25-29 vs 30-39,-6.43,-6.97,-6.05,150
+Edad 40-49 vs 30-39,8.35,8.12,8.57,150
+Edad 50-59 vs 30-39,13.92,13.4,14.35,150
+Edad 60-69 vs 30-39,17.96,16.99,18.8,150
+Edad 70+ vs 30-39,8.68,7.15,10.06,150
+Sección rural vs urbana,5.38,3.03,7.29,150
+Sección mixta vs urbana,1.39,0.27,2.64,150
+Elección 2024 vs 2009,14.44,11.12,17.37,150
+Elección 2024 vs 2012,-3.48,-5.12,-2.16,150
+Elección 2024 vs 2015,11.71,8.15,14.51,150
+Elección 2024 vs 2018,-3.35,-4.39,-2.32,150
+Elección 2024 vs 2021,7.51,4.94,9.46,150
+Brecha M−H en edad 18-24,8.61,8.0,9.24,150
+Brecha M−H en edad 25-29,11.34,10.59,12.21,150
+Brecha M−H en edad 30-39,11.76,10.99,12.51,150
+Brecha M−H en edad 40-49,9.69,9.07,10.21,150
+Brecha M−H en edad 50-59,6.37,5.73,6.82,150
+Brecha M−H en edad 60-69,1.2,0.39,1.74,150
+Brecha M−H en edad 70+,-6.08,-7.11,-5.3,150
+Brecha M−H 2024 en edad 18-24,10.32,9.69,11.19,150
+Brecha M−H 2024 en edad 25-29,13.25,12.49,14.18,150
+Brecha M−H 2024 en edad 30-39,13.48,12.8,14.3,150
+Brecha M−H 2024 en edad 40-49,11.03,10.45,11.59,150
+Brecha M−H 2024 en edad 50-59,7.41,6.8,7.89,150
+Brecha M−H 2024 en edad 60-69,2.2,1.43,2.68,150
+Brecha M−H 2024 en edad 70+,-4.36,-5.4,-3.59,150
+"Rural vs urbana, elección 2015",10.39,7.56,13.59,150
+"Rural vs urbana, elección 2024",0.9,-1.95,3.81,150

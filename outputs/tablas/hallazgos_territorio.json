@@ -1,0 +1,70 @@
+{
+ "captura_global": [
+  {
+   "region": "A: 3 regiones",
+   "captura_global": 0.207,
+   "captura_con_cambio_por_eleccion": 0.17,
+   "azar_mediana": 0.07,
+   "azar_p95": 0.238
+  },
+  {
+   "region": "B: 5 regiones",
+   "captura_global": 0.541,
+   "captura_con_cambio_por_eleccion": 0.448,
+   "azar_mediana": 0.136,
+   "azar_p95": 0.327
+  }
+ ],
+ "por_eleccion": [
+  {
+   "eleccion": 2009,
+   "captura_A": 0.039,
+   "captura_B": 0.154,
+   "D2_controles": 0.499,
+   "D2_con_entidad": 0.898
+  },
+  {
+   "eleccion": 2012,
+   "captura_A": 0.277,
+   "captura_B": 0.454,
+   "D2_controles": 0.659,
+   "D2_con_entidad": 0.885
+  },
+  {
+   "eleccion": 2015,
+   "captura_A": 0.045,
+   "captura_B": 0.243,
+   "D2_controles": 0.577,
+   "D2_con_entidad": 0.91
+  },
+  {
+   "eleccion": 2018,
+   "captura_A": 0.314,
+   "captura_B": 0.765,
+   "D2_controles": 0.556,
+   "D2_con_entidad": 0.885
+  },
+  {
+   "eleccion": 2021,
+   "captura_A": 0.223,
+   "captura_B": 0.579,
+   "D2_controles": 0.664,
+   "D2_con_entidad": 0.872
+  },
+  {
+   "eleccion": 2024,
+   "captura_A": 0.284,
+   "captura_B": 0.702,
+   "D2_controles": 0.669,
+   "D2_con_entidad": 0.88
+  }
+ ],
+ "solape_2024": {
+  "alta": "Centro",
+  "baja": "Sur",
+  "pct_baja_sobre_mediana_alta": 29.9
+ },
+ "n_municipios_2024": 2441,
+ "D2_controles": 0.69,
+ "D2_con_entidad": 0.804
+}

@@ -1,0 +1,37 @@
+{
+ "2021": {
+  "municipios_conteos": 2468,
+  "con_geometria": 2464,
+  "sin_geometria": 4,
+  "geometrias_sin_datos": 5
+ },
+ "2024": {
+  "municipios_conteos": 2477,
+  "con_geometria": 2466,
+  "sin_geometria": 11,
+  "geometrias_sin_datos": 3
+ },
+ "agrupamientos_2024": {
+  "part": {
+   "No significativo": 1713,
+   "Alto-Alto": 310,
+   "Bajo-Bajo": 308,
+   "Alto-Bajo": 86,
+   "Bajo-Alto": 37
+  },
+  "brecha_joven": {
+   "No significativo": 1162,
+   "Bajo-Bajo": 209,
+   "Alto-Alto": 199,
+   "Alto-Bajo": 35,
+   "Bajo-Alto": 18
+  },
+  "brecha_85": {
+   "No significativo": 1215,
+   "Bajo-Bajo": 164,
+   "Alto-Alto": 146,
+   "Alto-Bajo": 57,
+   "Bajo-Alto": 41
+  }
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "AELEC_no_numerico_o_vacio": 0,
+ "EDOCVE_no_numerico_o_vacio": 0,
+ "MPIOCVE_no_numerico_o_vacio": 0,
+ "SECCION_no_numerico_o_vacio": 0,
+ "SEXO_no_numerico_o_vacio": 0,
+ "EDAD_no_numerico_o_vacio": 0,
+ "LN_no_numerico_o_vacio": 0,
+ "SV_no_numerico_o_vacio": 0,
+ "NV_no_numerico_o_vacio": 0,
+ "NS_no_numerico_o_vacio": 0,
+ "filas_total": 54872712,
+ "TIPOSEC_valores": {
+  "U": 35056381,
+  "R": 14584179,
+  "M": 5232152
+ },
+ "SEXO_valores": {
+  "1": 27744408,
+  "0": 27128199,
+  "2": 105
+ },
+ "filas_en_llave_duplicada": 0,
+ "duplicados_exactos_en_todo": 0,
+ "duplicados_por_anio": {},
+ "LN_negativos": 0,
+ "LN_max": 982,
+ "SV_negativos": 0,
+ "SV_max": 424,
+ "NV_negativos": 0,
+ "NV_max": 603,
+ "NS_negativos": 0,
+ "NS_max": 259,
+ "SV_mayor_que_LN": 0,
+ "edad_min": 18,
+ "edad_max": 140,
+ "filas_edad_menor_18": 0,
+ "filas_edad_mayor_100": 91629,
+ "LN_p99.9": 141.0,
+ "filas_LN_sobre_p99.99": 5406,
+ "entidades_por_anio": {
+  "2009": 32,
+  "2012": 32,
+  "2015": 32,
+  "2018": 32,
+  "2021": 32,
+  "2024": 32
+ },
+ "secciones_por_anio": {
+  "2009": 64934,
+  "2012": 65599,
+  "2015": 68362,
+  "2018": 68408,
+  "2021": 68812,
+  "2024": 70751
+ },
+ "municipios_por_anio": {
+  "2009": 2458,
+  "2012": 2455,
+  "2015": 2458,
+  "2018": 2463,
+  "2021": 2468,
+  "2024": 2477
+ },
+ "filas_sexo2_por_anio": {
+  "2024": 105
+ },
+ "secciones_con_tipo_cambiante": 1617
+}
