@@ -31,7 +31,8 @@ def history_chart(history, tokens, year):
                   custom_data=["tipo_eleccion"], category_orders={"nombre": list(NAMES.values())})
     fig.update_traces(line_width=3, marker_size=8,
                       hovertemplate="%{x} · %{customdata[0]}<br>Participación: %{y:.1f}%<extra>%{fullData.name}</extra>")
-    fig.add_vline(x=year, line_dash="dot", line_color=tokens["muted"], opacity=.6)
+    if year is not None:
+        fig.add_vline(x=year, line_dash="dot", line_color=tokens["muted"], opacity=.6)
     fig.update_xaxes(tickvals=YEARS, title=None)
     return finish(fig, tokens)
 
@@ -99,14 +100,37 @@ def territorial_chart(frame, tokens):
     return finish(fig, tokens, height=470)
 
 
-def profile_matrix(segments, tokens):
+def sex_gap_data(segments, year):
+    """Comparar solo edades con ambos sexos presentes tras aplicar los filtros."""
+    rates = segments.pivot(index="edad", columns="sexo", values=str(year))
+    if not {"Hombres", "Mujeres"}.issubset(rates.columns):
+        return rates.iloc[0:0].rename_axis(columns=None).reset_index()
+    rates = rates.dropna(subset=["Hombres", "Mujeres"]).sort_index()
+    rates["brecha_pp"] = rates.Mujeres - rates.Hombres
+    return rates.rename_axis(columns=None).reset_index()
+
+
+def sex_gap_chart(gaps, tokens, year):
+    positive, negative = "#D65D91", "#50BFC3"
+    # Barras divergentes: cada edad conserva su valor real y no se conectan
+    # edades ausentes por los filtros.
     fig = go.Figure()
-    ordered = segments.sort_values(["sexo", "edad"])
-    for p, name in NAMES.items():
-        group = ordered[ordered.perfil == p]
-        fig.add_trace(go.Scatter(x=group.edad, y=group.sexo, mode="markers", name=name,
-                                 marker=dict(color=COLORS[p], size=13, symbol="square"),
-                                 hovertemplate="%{y} · %{x} años<br>" + name + "<extra></extra>"))
-    fig.update_xaxes(title="Edad", range=[17, 100], dtick=10)
-    fig.update_yaxes(title=None, categoryorder="array", categoryarray=["Mujeres", "Hombres"])
-    return finish(fig, tokens, height=250, y_percent=False)
+    for label, mask, color in [
+        ("Mayor participación de mujeres", gaps.brecha_pp >= 0, positive),
+        ("Mayor participación de hombres", gaps.brecha_pp < 0, negative),
+    ]:
+        group = gaps[mask]
+        if group.empty:
+            continue
+        fig.add_trace(go.Bar(x=group.edad, y=group.brecha_pp, name=label,
+                             marker=dict(color=color, line_width=0), width=.8,
+                             customdata=group[["Mujeres", "Hombres"]].to_numpy(),
+                             hovertemplate="%{x} años<br>Mujeres: %{customdata[0]:.2f}%<br>Hombres: %{customdata[1]:.2f}%<br>Brecha: %{y:+.2f} puntos<extra></extra>"))
+    finish(fig, tokens, height=420, y_percent=False)
+    extent = max(2, float(gaps.brecha_pp.abs().max()) * 1.2)
+    fig.update_yaxes(title="Mujeres − hombres · puntos porcentuales", range=[-extent, extent],
+                      ticksuffix=" pp", zeroline=True, zerolinecolor=tokens["muted"], zerolinewidth=1.5)
+    fig.update_xaxes(title="Edad cumplida", range=[gaps.edad.min()-1, gaps.edad.max()+1], dtick=10)
+    fig.update_layout(barmode="overlay", legend=dict(y=-.22),
+                       title=dict(text=f"Brecha de participación · {year}", font=dict(size=14), x=.02))
+    return fig

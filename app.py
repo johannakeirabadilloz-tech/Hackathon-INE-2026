@@ -1,12 +1,18 @@
 """Streamlit: panel estadístico de perfiles ciudadanos de participación."""
 from html import escape
+from importlib import reload
 
 import streamlit as st
 
 from dashboard import charts
 from dashboard.data import (COLORS, NAMES, PRESIDENTIAL, REPORTS, YEARS, csv_bytes,
                             filter_segments, previous_same_cycle, profile_tables, read_tables)
-from dashboard.theme import apply_theme, profile_card
+from dashboard import theme as ui_theme
+
+# Streamlit conserva módulos entre ejecuciones; recargar el módulo visual
+# permite incorporar funciones y estilos nuevos sin reiniciar el servidor.
+ui_theme = reload(ui_theme)
+charts = reload(charts)
 
 st.set_page_config(page_title="Perfiles de participación · INE 2026", page_icon="◈",
                    layout="wide", initial_sidebar_state="expanded")
@@ -42,13 +48,15 @@ def render_table(frame, percent_columns=(), hide_index=True):
 def overview(data, profiles, year, tokens):
     heading("RETO 1 / PANEL ESTADÍSTICO", "La participación tiene distintos perfiles",
             "Explora cuatro tipologías nacionales por sexo y edad. Compara su participación histórica y las diferencias territoriales.")
-    st.caption(f"México · {year} · Elección {'presidencial' if year in PRESIDENTIAL else 'intermedia'} · Datos agregados del INE")
+    all_years = year == "Todos"
+    st.caption("México · Todas las elecciones · 2009–2024 · Datos agregados del INE" if all_years else
+               f"México · {year} · Elección {'presidencial' if year in PRESIDENTIAL else 'intermedia'} · Datos agregados del INE")
     if not profiles:
         st.info("Selecciona al menos un perfil en la barra lateral.")
         return
     history = data["history"][data["history"].perfil.isin(profiles)]
-    current = history[history.anio == year].set_index("perfil")
-    previous = previous_same_cycle(year)
+    current = history[history.anio == (2024 if all_years else year)].set_index("perfil")
+    previous = None if all_years else previous_same_cycle(year)
     for col, p in zip(st.columns(len(profiles)), profiles):
         row = current.loc[p]
         change = "Primera elección de este tipo en la serie"
@@ -56,16 +64,31 @@ def overview(data, profiles, year, tokens):
             earlier = history[(history.perfil == p) & (history.anio == previous)].iloc[0]
             change = f"{row.participacion_pct - earlier.participacion_pct:+.1f} puntos frente a {previous}"
         with col:
-            profile_card(p, NAMES[p], COLORS[p], row.participacion_pct, change, row.pct_lista_2024)
-    st.caption("Las variaciones comparan elecciones del mismo tipo. La proporción de lista nominal siempre corresponde a 2024 y puede no sumar 100% al seleccionar solo algunos perfiles.")
-    st.subheader(f"Perfil de cada sexo y edad · {year}")
+            if all_years:
+                rates = history.loc[history.perfil == p, "participacion_pct"]
+                ui_theme.profile_card(p, NAMES[p], COLORS[p], f"{rates.min():.1f}–{rates.max():.1f}%",
+                                      "Mínimo y máximo de las seis elecciones", row.pct_lista_2024,
+                                      value_label="Rango de participación · 2009–2024")
+            else:
+                ui_theme.profile_card(p, NAMES[p], COLORS[p], row.participacion_pct, change, row.pct_lista_2024)
+    if not all_years:
+        st.caption("Las variaciones comparan elecciones del mismo tipo.")
+    st.subheader(f"Perfil de cada sexo y edad · {'Todas las elecciones' if all_years else year}")
     st.caption("El color identifica el perfil; la altura de cada barra muestra la participación observada en esa edad. Hombres y mujeres se presentan en paneles separados.")
     segments = data["segments"][data["segments"].perfil.isin(profiles)]
-    chart(charts.age_bars(segments, tokens, year), "overview_age_bars")
-    summary, trajectory = profile_tables(data, profiles, year)
+    if all_years:
+        for tab, election in zip(st.tabs([str(y) for y in YEARS]), YEARS):
+            with tab:
+                st.caption(f"Participación {election}")
+                chart(charts.age_bars(segments, tokens, election), f"overview_age_bars_{election}")
+    else:
+        chart(charts.age_bars(segments, tokens, year), "overview_age_bars")
+    summary, trajectory = profile_tables(data, profiles, 2024 if all_years else year)
+    if all_years:
+        summary = summary.drop(columns=["Participación 2024 (%)"]).merge(trajectory.drop(columns="Perfil"), on="#")
     st.subheader("Los cuatro perfiles" if len(profiles) == 4 else "Perfiles seleccionados")
-    render_table(summary, ["% de lista nominal (2024)", f"Participación {year} (%)"])
-    st.caption(f"Edades y asignaciones construidas con las seis elecciones. La composición de lista nominal corresponde a 2024; la participación corresponde a {year} y usa SV / (SV + NV).")
+    render_table(summary, ["% de lista nominal (2024)", *([str(y) for y in YEARS] if all_years else [f"Participación {year} (%)"])])
+    st.caption("Edades y asignaciones construidas con las seis elecciones. Participación = SV / (SV + NV).")
     download_table(summary, f"resumen_perfiles_{year}.csv", "Descargar resumen de perfiles")
     st.subheader("Participación de los perfiles por elección")
     render_table(trajectory, [str(y) for y in YEARS])
@@ -74,7 +97,7 @@ def overview(data, profiles, year, tokens):
     left, right = st.columns([1.35, 1], gap="large")
     with left:
         st.subheader("Seis elecciones, cuatro trayectorias")
-        chart(charts.history_chart(history, tokens, year), "overview_history")
+        chart(charts.history_chart(history, tokens, None if all_years else year), "overview_history")
     with right:
         st.subheader("¿Qué tamaño tiene cada perfil?")
         chart(charts.share_chart(history, tokens), "overview_share")
@@ -99,20 +122,40 @@ def demographics(data, profiles, year, tokens):
         return
     st.caption(f"{len(selected)} combinaciones de sexo y edad · Participación {year} · Asignaciones nacionales fijas")
     view = st.radio("Representación", ["Barras por sexo", "Dispersión"], horizontal=True, key="age_view")
-    if view == "Barras por sexo":
-        chart(charts.age_bars(selected, tokens, year), "age_bars")
+    renderer = charts.age_bars if view == "Barras por sexo" else charts.age_chart
+    if year == "Todos":
+        for tab, election in zip(st.tabs([str(y) for y in YEARS]), YEARS):
+            with tab:
+                st.caption(f"Participación {election}")
+                chart(renderer(selected, tokens, election), f"age_view_{election}")
     else:
-        chart(charts.age_chart(selected, tokens, year), "age_scatter")
-    st.subheader("Asignación por sexo y edad")
-    chart(charts.profile_matrix(selected, tokens), "profile_matrix")
+        chart(renderer(selected, tokens, year), "age_view_single")
+    st.subheader("¿Dónde cambia la participación entre mujeres y hombres?")
+    st.caption("Por encima de cero participan más las mujeres; por debajo, los hombres. La distancia a cero se expresa en puntos porcentuales.")
+    gap_years = YEARS if year == "Todos" else [year]
+    gaps_by_year = {election: charts.sex_gap_data(selected, election) for election in gap_years}
+    if all(gaps.empty for gaps in gaps_by_year.values()):
+        st.info("Para comparar, selecciona ambos sexos y perfiles que incluyan hombres y mujeres de la misma edad.")
+    elif year == "Todos":
+        for tab, election in zip(st.tabs([str(y) for y in YEARS]), YEARS):
+            with tab:
+                chart(charts.sex_gap_chart(gaps_by_year[election], tokens, election), f"sex_gap_{election}")
+    else:
+        gaps = gaps_by_year[year]
+        chart(charts.sex_gap_chart(gaps, tokens, year), "sex_gap_single")
+        largest = gaps.loc[gaps.brecha_pp.abs().idxmax()]
+        st.caption(f"Mayor diferencia entre las edades visibles: {int(largest.edad)} años · {largest.brecha_pp:+.2f} puntos (mujeres − hombres).")
+    st.caption("La brecha usa solo edades con ambos sexos presentes en los filtros. No es una diferencia entre perfiles ni explica sus causas.")
     st.caption("Los filtros seleccionan segmentos; no recalculan perfiles ni una tasa agregada. Las tasas por edad no se promedian para producir un total.")
-    for p in profiles:
-        group = data["composition"].query("perfil_numero == @p")
-        with st.expander(f"{p}. {NAMES[p]} · composición nacional completa"):
-            for row in group.itertuples():
-                st.write(f"**{row.sexo.capitalize()}:** {row.edades} años.")
-            st.caption("La ficha muestra la definición completa, independientemente del rango de edad visible.")
-    table = selected[["perfil", "nombre", "sexo", "edad", str(year)]].rename(columns={str(year): "participacion_pct"})
+    st.subheader("Composición nacional de los perfiles")
+    composition, _ = profile_tables(data, profiles, 2024)
+    render_table(composition[["#", "Perfil", "Hombres (años)", "Mujeres (años)"]])
+    st.caption("La tabla muestra la definición completa de los perfiles seleccionados, independientemente del filtro de sexo o del rango de edad visible.")
+    if year == "Todos":
+        table = selected.melt(id_vars=["perfil", "nombre", "sexo", "edad"], value_vars=[str(y) for y in YEARS],
+                              var_name="anio", value_name="participacion_pct")
+    else:
+        table = selected[["perfil", "nombre", "sexo", "edad", str(year)]].rename(columns={str(year): "participacion_pct"})
     with st.expander("Consultar los valores de la gráfica"):
         render_table(table, ["participacion_pct"])
     download_table(table, f"perfiles_sexo_edad_{year}.csv")
@@ -128,7 +171,7 @@ def evolution(data, profiles, year, tokens):
     if selected.empty:
         st.info("Selecciona al menos un perfil en la barra lateral.")
         return
-    chart(charts.history_chart(selected, tokens, year), "evolution_history")
+    chart(charts.history_chart(selected, tokens, None if year == "Todos" else year), "evolution_history")
     st.caption("Las tasas publicadas están redondeadas a un decimal. Las líneas conectan cortes agregados; no siguen a las mismas personas entre elecciones.")
     st.subheader("Participación por perfil y elección")
     pivot = selected.pivot(index="nombre", columns="anio", values="participacion_pct")
@@ -192,12 +235,13 @@ def main():
         st.code(str(exc))
         st.stop()
     with st.sidebar:
-        st.markdown('<div class="brand">◈ <span>INE</span> / Análisis electoral</div><div class="brand-note">HACKATHON 2026 · RETO 1</div>', unsafe_allow_html=True)
+        ui_theme.sidebar_brand()
+        theme = st.radio("Apariencia", ["Claro", "Oscuro"], horizontal=True, key="theme")
+        st.divider()
         section = st.radio("Panel estadístico", ["Panorama", "Sexo y edad", "Evolución", "Territorio", "Metodología"], key="section")
         st.divider()
-        theme = st.radio("Apariencia", ["Claro", "Oscuro"], horizontal=True, key="theme")
         if section in ["Panorama", "Sexo y edad", "Evolución"]:
-            year = st.selectbox("Elección de referencia", YEARS, index=5, key="year")
+            year = st.selectbox("Elección de referencia", ["Todos", *YEARS], index=6, key="year")
         else:
             year = 2024
         if section != "Metodología":
@@ -208,7 +252,12 @@ def main():
         st.divider()
         st.caption("Participación = SV / (SV + NV).\n\nRegistros no especificados se analizan por separado.")
         st.caption("Fuente: INE · 2009–2024\n\nPerfiles agregados, sin datos personales.")
-    tokens = apply_theme(theme)
+        st.caption("**CREADORES:**\n\n"
+                   "Valeria Jahzeel Castañon Hernandez\n\n"
+                   "Johanna Keira Badillo Zavala\n\n"
+                   "Ernesto Mendieta Cuecuecha\n\n"
+                   "Rodrigo Paredes Urrusquieta")
+    tokens = ui_theme.apply_theme(theme)
     if section == "Panorama":
         overview(data, profiles, year, tokens)
     elif section == "Sexo y edad":
@@ -219,7 +268,7 @@ def main():
         territory(data, profiles, tokens)
     else:
         methodology(data)
-    st.markdown('<div class="source-note">Centro de Inteligencia y Visualización de Información para el Análisis Electoral · Nombre provisional · Hackathon INE 2026</div>', unsafe_allow_html=True)
+    st.markdown('<div class="source-note">Centro de Inteligencia y Visualización de Información para el Análisis Electoral · Hackathon INE 2026</div>', unsafe_allow_html=True)
 
 
 if __name__ == "__main__":

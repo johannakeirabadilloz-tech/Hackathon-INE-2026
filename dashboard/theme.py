@@ -1,5 +1,7 @@
 """Adaptación de temas, tarjetas y sidebar del panel Streamlit Dashboard_089."""
 from html import escape
+import base64
+from pathlib import Path
 import streamlit as st
 
 THEMES = {
@@ -16,6 +18,13 @@ def apply_theme(name):
     .stApp, [data-testid="stAppViewContainer"] {{background:{t['bg']};color:{t['text']};}}
     [data-testid="stHeader"] {{background:transparent;}}
     [data-testid="stSidebar"] {{background:{t['sidebar']};border-right:1px solid {t['border']};}}
+    [data-testid="stSidebarUserContent"] {{padding-top:.5rem!important;}}
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {{gap:.65rem;}}
+    [data-testid="stSidebar"] hr {{margin:.2rem 0!important;border-color:{t['border']};}}
+    [data-testid="stSidebar"] [data-testid="stWidgetLabel"] {{margin-bottom:.25rem;}}
+    .sidebar-logo {{background:transparent!important;border-radius:8px;padding:8px 10px;margin:0 0 .35rem;}}
+    .sidebar-logo img {{display:block;width:100%;height:auto;max-height:95px;object-fit:contain;}}
+    .sidebar-logo-note {{font-size:.68rem;color:{t['muted']};letter-spacing:.04em;margin:.15rem 0 .35rem;}}
     .block-container {{max-width:1440px;padding-top:2rem;padding-bottom:3rem;}}
     h1,h2,h3 {{color:{t['text']}!important;letter-spacing:-.025em;}}
     h1 {{font-size:2.35rem!important;line-height:1.15!important;}}
@@ -87,9 +96,17 @@ def apply_theme(name):
     return t
 
 
-def profile_card(number, name, color, value, change, share):
+def sidebar_brand():
+    logo = Path(__file__).resolve().parents[1] / "assets/logo-civia-ine.png"
+    encoded = base64.b64encode(logo.read_bytes()).decode("ascii")
+    st.markdown(f'<div class="sidebar-logo"><img src="data:image/png;base64,{encoded}" alt="CIVIA · INE"></div>'
+                '<div class="sidebar-logo-note">HACKATHON 2026 · RETO 1</div>', unsafe_allow_html=True)
+
+
+def profile_card(number, name, color, value, change, share, value_label="Participación entre especificados"):
+    formatted = escape(value) if isinstance(value, str) else f"{value:.1f}%"
     st.markdown(f"""<div class="profile-card" style="--accent:{color}">
     <div class="profile-label">{number:02d} / {escape(name)}</div>
-    <div class="profile-value">{value:.1f}%</div>
-    <div class="profile-sub">Participación entre especificados<br>{escape(change)}<br>
+    <div class="profile-value">{formatted}</div>
+    <div class="profile-sub">{escape(value_label)}<br>{escape(change)}<br>
     <strong>{share:.1f}%</strong> de la lista nominal analizada en 2024</div></div>""", unsafe_allow_html=True)

@@ -21,12 +21,14 @@ En otros sistemas puede usarse un entorno virtual equivalente y `python -m strea
 | Vista | Fuente | Filtros y alcance |
 | --- | --- | --- |
 | Panorama | Asignaciones, composición y trayectorias | Barras por edad en paneles de hombres y mujeres, tabla de perfiles y tabla de seis elecciones. Perfil y elección; la proporción de lista nominal siempre es de 2024. |
-| Sexo y edad | `asignacion_segmentos_sexo_edad.csv`, `composicion_perfiles.csv` | Perfil, sexo, edad y elección; barras separadas por sexo o dispersión, sin calcular promedios agregados. |
+| Sexo y edad | `asignacion_segmentos_sexo_edad.csv`, `composicion_perfiles.csv` | Perfil, sexo, edad y elección; barras separadas por sexo o dispersión y brecha mujeres − hombres en puntos porcentuales. Solo se comparan edades con ambos sexos presentes en los filtros. |
 | Evolución | `trayectorias_perfiles.csv` | Perfil y tipo de elección; serie nacional 2009–2024. |
 | Territorio | `perfiles_region_tipo_comparacion.csv` | Perfil y región, tipo de sección o ambos; exclusivamente 2024. |
 | Metodología | Comparación de algoritmos y documentación | Definiciones, selección de cuatro perfiles, límites y descargas. |
 
 Todas las fuentes están publicadas en `reports/perfiles_sexo_edad/`. No se carga el maestro local, no se extraen ZIP ni se entrenan modelos al abrir la app. Los filtros no modifican las asignaciones publicadas.
+
+La opción **Todos** en elección de referencia conserva las seis elecciones separadas: muestra un rango mínimo–máximo en las tarjetas, pestañas por año en las gráficas por edad y las seis columnas en la tabla resumen. No suma ni promedia porcentajes de distintas elecciones. Territorio mantiene su corte disponible de 2024.
 
 ## Reglas de los indicadores
 

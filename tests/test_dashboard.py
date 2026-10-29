@@ -6,7 +6,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from dashboard.data import filter_segments, previous_same_cycle, profile_tables, read_tables
-from dashboard.charts import age_bars
+from dashboard.charts import age_bars, sex_gap_data
 from dashboard.theme import THEMES
 from streamlit.testing.v1 import AppTest
 
@@ -72,8 +72,39 @@ class DataContractTests(unittest.TestCase):
         fig = age_bars(one, THEMES["Oscuro"], 2012)
         self.assertEqual(sum(len(t.x) for t in fig.data), 1)
 
+    def test_sex_gap_uses_paired_ages_and_percentage_points(self):
+        segments = self.data["segments"]
+        gaps = sex_gap_data(segments, 2024).set_index("edad")
+        self.assertEqual(len(gaps), 82)
+        original = segments.set_index(["sexo_codigo", "edad"])
+        expected = original.loc[(1, 35), "2024"] - original.loc[(0, 35), "2024"]
+        self.assertAlmostEqual(gaps.loc[35, "brecha_pp"], expected)
+        self.assertGreater(gaps.loc[35, "brecha_pp"], 0)
+        self.assertLess(gaps.loc[85, "brecha_pp"], 0)
+        women_only = filter_segments(segments, [1, 2, 3, 4], ["Mujeres"], (18, 99))
+        self.assertTrue(sex_gap_data(women_only, 2024).empty)
+        high = filter_segments(segments, [1], ["Hombres", "Mujeres"], (18, 99))
+        self.assertNotIn(18, sex_gap_data(high, 2024).edad.tolist())
+
 
 class NavigationTests(unittest.TestCase):
+    def test_all_elections_keeps_each_year_separate(self):
+        app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=40).run()
+        app.sidebar.selectbox(key="year").set_value("Todos").run()
+        self.assertFalse(app.exception, str(app.exception))
+        summary = app.table[0].value
+        self.assertTrue(all(str(y) in summary.columns for y in [2009, 2012, 2015, 2018, 2021, 2024]))
+        self.assertNotIn("Participación Todos (%)", summary.columns)
+        self.assertEqual(summary.loc[0, "2024"], 70.6)
+        self.assertEqual(len(app.tabs), 6)
+        app.sidebar.radio(key="section").set_value("Sexo y edad").run()
+        self.assertFalse(app.exception, str(app.exception))
+        self.assertEqual(len(app.table[0].value), 4)
+        self.assertEqual(len(app.table[1].value), 164 * 6)
+        self.assertEqual(app.table[1].value.anio.nunique(), 6)
+        app.sidebar.radio(key="section").set_value("Evolución").run()
+        self.assertFalse(app.exception, str(app.exception))
+
     def test_pages_filters_and_empty_states(self):
         app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=40).run()
         self.assertFalse(app.exception, str(app.exception))
