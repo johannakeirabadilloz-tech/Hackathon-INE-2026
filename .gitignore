@@ -10,6 +10,8 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv-dashboard/
+.streamlit/secrets.toml
 ~$*
 /data/external/
 /data/civia_dataset/

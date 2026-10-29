@@ -2,6 +2,12 @@
 
 Proyecto para el **Hackathon INE 2026 · Reto 1: Perfiles ciudadanos de participación**. El nombre del proyecto es provisional.
 
+## Dashboard de Streamlit
+
+La app del panel estadístico se ejecuta con `python -m streamlit run app.py`, tras instalar `requirements.txt` en un entorno virtual. Usa únicamente las tablas publicadas y no requiere el maestro local.
+
+Incluye panorama de los cuatro perfiles, exploración por sexo y edad, evolución histórica, comparación territorial de 2024 y metodología. [Instalación, fuentes y alcance de los filtros](docs/dashboard_streamlit.md).
+
 Buscamos identificar quiénes participan, qué características comparten, dónde se presentan diferencias y qué estrategias podrían contribuir a aumentar la participación ciudadana en México.
 
 ## Contexto del reto
