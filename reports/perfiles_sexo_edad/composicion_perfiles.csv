@@ -1,9 +1,9 @@
 perfil,sexo,edades
-1. Participación alta,hombres,52-81
-1. Participación alta,mujeres,"18, 39-77"
-2. Participación intermedia,hombres,"18-19, 37-51, 82-87"
-2. Participación intermedia,mujeres,"19-38, 78-83"
-3. Participación baja,hombres,"20-36, 88-92"
-3. Participación baja,mujeres,84-89
+1. PARTICIPACIÓN ALTA,hombres,52-81
+1. PARTICIPACIÓN ALTA,mujeres,"18, 39-77"
+2. PARTICIPACIÓN INTERMEDIA,hombres,"18-19, 37-51, 82-87"
+2. PARTICIPACIÓN INTERMEDIA,mujeres,"19-38, 78-83"
+3. PARTICIPACION BAJA,hombres,"20-36, 88-92"
+3. PARTICIPACION BAJA,mujeres,84-89
 4. Valores atípicos,hombres,93-99
 4. Valores atípicos,mujeres,90-99
