@@ -20,7 +20,7 @@ Propuesta de cuatro perfiles nacionales de participación electoral, construidos
 | 1 | **Participación alta** | 52–81 años | 39–77 años (y 18) | 41.0% | 70.6% |
 | 2 | **Participación intermedia** | 18–19, 37–51, 82–87 | 19–38, 78–83 | 39.0% | 56.5% |
 | 3 | **Participación baja** | 20–36, 88–92 | 84–89 | 19.6% | 43.6% |
-| 4 | **Muy mayores (90+)** | 93–99 | 90–99 | 0.4% | 31.1% |
+| 4 | **Valores atípicos** | 93–99 | 90–99 | 0.4% | 31.1% |
 
 Participación entre registros con situación especificada (votos entre votos más no votos), por elección:
 
@@ -29,7 +29,7 @@ Participación entre registros con situación especificada (votos entre votos m�
 | 1. Alta | 54.8 | 72.3 | 58.4 | 71.3 | 62.9 | 70.6 |
 | 2. Intermedia | 42.4 | 60.8 | 44.5 | 60.7 | 48.7 | 56.5 |
 | 3. Baja | 31.2 | 48.4 | 32.6 | 49.4 | 36.8 | 43.6 |
-| 4. Muy mayores | 11.4 | 26.4 | 20.1 | 26.2 | 23.4 | 31.1 |
+| 4. Valores atípicos | 11.4 | 26.4 | 20.1 | 26.2 | 23.4 | 31.1 |
 
 ![Perfil de cada sexo y edad](fig1_perfiles_por_sexo_y_edad.png)
 
@@ -42,7 +42,9 @@ Participación entre registros con situación especificada (votos entre votos m�
 1. **Participación alta.** Es el núcleo adulto: mujeres de 39 a 77 años y hombres de 52 a 81. Participa entre 55% y 63% en elecciones intermedias y entre 70% y 72% en presidenciales. Las mujeres llegan a este nivel unos 13 años antes que los hombres.
 2. **Participación intermedia.** Reúne a quienes están en transición: mujeres jóvenes (19–38), hombres de mediana edad (37–51) y personas de 78–87 años cuya participación va cayendo. Su participación sube unos 14 puntos, en promedio, de las elecciones intermedias a las presidenciales.
 3. **Participación baja.** Reúne a dos grupos que no se parecen entre sí pero tienen niveles y ciclo similares: los **hombres jóvenes de 20 a 36 años** y las personas de **84 a 92 años**. Compartir perfil no significa tener las mismas razones ni necesitar la misma intervención.
-4. **Muy mayores (90+).** Participación de 11% a 31%. Es muy pequeño (0.4% de la lista nominal), por lo que debe tratarse con cautela (véase la sección 6).
+4. **Valores atípicos.** Participación de 11% a 31%. Es muy pequeño (0.4% de la lista nominal), por lo que debe tratarse con cautela (véase la sección 6).
+
+**Nombre del perfil 4.** "Valores atípicos" es la denominación del perfil; no implica que sus registros sean errores ni que se haya aplicado un detector estadístico de anomalías. Conserva su composición: hombres de 93–99 años y mujeres de 90–99 años.
 
 ## 3. Por qué esta estructura
 
@@ -67,7 +69,7 @@ Se comparó el agrupamiento de 164 segmentos (sexo × edad simple, de 18 a 99 a�
 | 6 | 0.505 | 0.916 | 0.781 |
 
 - Con 2 grupos la silhouette es mejor, pero es el agrupamiento menos estable.
-- Con 3 y 4 grupos el resultado es muy estable y se separan estructuras que con 2 quedan mezcladas: los muy mayores y la diferencia por sexo.
+- Con 3 y 4 grupos el resultado es muy estable y se separan estructuras que con 2 quedan mezcladas: las edades más avanzadas y la diferencia por sexo.
 - **Se eligió 4 por criterio, no porque los datos prueben que existan exactamente cuatro tipos.** Si se prefiere simplicidad, con 3 grupos el perfil 4 se fusiona con el 3. Es un resumen útil de un patrón continuo.
 
 ### 3.3 Por qué los perfiles son nacionales y no por región o por tipo de sección
@@ -142,7 +144,7 @@ La comparación no invalida lo anterior: con grupos de edad más gruesos y la re
 - **No hay causas.** Son datos agregados de grupos, no de personas, y no incluyen motivos, escolaridad ni ingreso. Cualquier explicación de por qué participa menos un perfil es una hipótesis.
 - **Edad, periodo y cohorte no se pueden separar.** Los perfiles describen cortes de un mismo momento y no siguen a las mismas personas; que los jóvenes participen menos puede deberse a la edad, a la generación o a la época, y con estos datos no se distingue.
 - **Los límites entre perfiles no son umbrales naturales.** Dependen del método y de k.
-- **Los muy mayores pueden estar mal medidos.** La lista nominal podría incluir personas fallecidas o que ya no residen en su sección, lo que haría parecer menor la participación real de ese grupo. **No se verificó con los datos disponibles**, así que es una posibilidad y no un hallazgo. El perfil 4 es especialmente sensible a esto.
+- **El perfil de valores atípicos puede estar mal medido.** La lista nominal podría incluir personas fallecidas o que ya no residen en su sección, lo que haría parecer menor la participación real de ese grupo. **No se verificó con los datos disponibles**, así que es una posibilidad y no un hallazgo. El perfil 4 es especialmente sensible a esto.
 - **La regionalización norte/centro/sur es una propuesta del proyecto**, no una división oficial.
 - **El análisis es nacional.** Las diferencias locales (municipio, sección rural del sur) pueden ser grandes.
 - **No hay validación externa.** No se contrastó contra encuestas ni contra otra fuente de participación.
@@ -156,7 +158,7 @@ Son hipótesis para diseñar pruebas, no recomendaciones basadas en causas:
 | 1. Alta | Sostener el acceso a información cívica y a la casilla; evaluar qué funciona localmente antes de trasladarlo a otros grupos. |
 | 2. Intermedia | Reforzar la continuidad en elecciones intermedias, cuando su participación baja unos 14 puntos frente a las presidenciales. |
 | 3. Baja | Diseñar acciones **separadas** para hombres jóvenes (20–36) y para personas de 84–92 años; sus razones probablemente son distintas. |
-| 4. Muy mayores | Antes de actuar, verificar la calidad del padrón; después, explorar barreras de movilidad y de acceso. |
+| 4. Valores atípicos | Antes de actuar, verificar la calidad del padrón; después, explorar barreras de movilidad y de acceso. |
 | Secciones rurales del sur | Tratar como un caso aparte, con acciones adaptadas al lugar. |
 
 ## 8. Cómo reproducirlo

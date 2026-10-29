@@ -35,7 +35,7 @@ La etapa de exploración ya cuenta con una segmentación sociodemográfica y res
 
 ## Perfiles por sexo y edad (propuesta actual)
 
-Propuesta de cuatro perfiles nacionales de participación (alta, intermedia, baja y muy mayores) definidos por sexo y edad simple, con un ajuste por región y tipo de sección. Explicación completa, figuras, tratamiento de los no especificados y de las personas no binarias, robustez y límites en [reports/perfiles_sexo_edad/](reports/perfiles_sexo_edad/README.md).
+Propuesta de cuatro perfiles nacionales de participación (alta, intermedia, baja y valores atípicos) definidos por sexo y edad simple, con un ajuste por región y tipo de sección. Explicación completa, figuras, tratamiento de los no especificados y de las personas no binarias, robustez y límites en [reports/perfiles_sexo_edad/](reports/perfiles_sexo_edad/README.md).
 
 ## Resultados de la segmentación sociodemográfica
 

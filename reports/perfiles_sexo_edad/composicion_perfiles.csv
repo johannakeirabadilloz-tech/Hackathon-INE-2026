@@ -5,5 +5,5 @@ perfil,sexo,edades
 2. Participación intermedia,mujeres,"19-38, 78-83"
 3. Participación baja,hombres,"20-36, 88-92"
 3. Participación baja,mujeres,84-89
-4. Muy mayores (90+),hombres,93-99
-4. Muy mayores (90+),mujeres,90-99
+4. Valores atípicos,hombres,93-99
+4. Valores atípicos,mujeres,90-99
