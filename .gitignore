@@ -11,3 +11,5 @@ __pycache__/
 *.py[cod]
 .venv/
 ~$*
+/data/external/
+/data/civia_dataset/

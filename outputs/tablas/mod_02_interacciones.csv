@@ -1,0 +1,8 @@
+interaccion,parametros,ganancia_D2,p_wald_robusto
+sexo×edad,6,0.03105,0.0
+elección×edad,30,0.0089,0.0
+elección×sexo,5,0.00091,0.0
+elección×tipo,10,0.0091,0.0
+elección×entidad,155,0.09707,0.0
+sexo×tipo,2,0.00155,0.0
+edad×tipo,12,0.00381,0.0

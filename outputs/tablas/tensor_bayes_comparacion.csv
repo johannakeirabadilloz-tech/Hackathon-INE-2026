@@ -1,0 +1,3 @@
+modelo,rmse_pond_retenidas,mae_pts,max_rhat_hiperparametros,divergencias,sigma_residual_logit
+solo efectos principales,0.0607,4.9246,1.008,2,0.2787
+con interacciones de rango 3,0.0586,4.7679,1.021,3,0.2673

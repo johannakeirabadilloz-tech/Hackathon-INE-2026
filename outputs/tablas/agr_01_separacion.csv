@@ -1,0 +1,41 @@
+metrica,metodo,k,silhouette,varianza_entre,tam_min
+p_esp (sobre situación conocida),kmeans,2,0.327,0.418,14
+p_esp (sobre situación conocida),kmeans,3,0.28,0.548,10
+p_esp (sobre situación conocida),kmeans,4,0.291,0.637,1
+p_esp (sobre situación conocida),kmeans,5,0.279,0.698,2
+p_esp (sobre situación conocida),kmeans,6,0.279,0.739,1
+p_esp (sobre situación conocida),ward,2,0.325,0.411,13
+p_esp (sobre situación conocida),ward,3,0.288,0.531,7
+p_esp (sobre situación conocida),ward,4,0.284,0.628,2
+p_esp (sobre situación conocida),ward,5,0.277,0.693,2
+p_esp (sobre situación conocida),ward,6,0.289,0.738,2
+p_ln (sobre lista nominal),kmeans,2,0.334,0.428,13
+p_ln (sobre lista nominal),kmeans,3,0.274,0.559,9
+p_ln (sobre lista nominal),kmeans,4,0.279,0.632,1
+p_ln (sobre lista nominal),kmeans,5,0.278,0.695,1
+p_ln (sobre lista nominal),kmeans,6,0.267,0.736,1
+p_ln (sobre lista nominal),ward,2,0.319,0.418,15
+p_ln (sobre lista nominal),ward,3,0.249,0.532,7
+p_ln (sobre lista nominal),ward,4,0.251,0.62,2
+p_ln (sobre lista nominal),ward,5,0.267,0.679,2
+p_ln (sobre lista nominal),ward,6,0.265,0.737,1
+estandarizada sexo×edad,kmeans,2,0.318,0.407,13
+estandarizada sexo×edad,kmeans,3,0.276,0.54,10
+estandarizada sexo×edad,kmeans,4,0.284,0.629,1
+estandarizada sexo×edad,kmeans,5,0.273,0.688,1
+estandarizada sexo×edad,kmeans,6,0.24,0.733,1
+estandarizada sexo×edad,ward,2,0.31,0.397,13
+estandarizada sexo×edad,ward,3,0.278,0.519,7
+estandarizada sexo×edad,ward,4,0.275,0.617,2
+estandarizada sexo×edad,ward,5,0.279,0.685,2
+estandarizada sexo×edad,ward,6,0.283,0.732,2
+desvío vs nacional (pts),kmeans,2,0.327,0.418,14
+desvío vs nacional (pts),kmeans,3,0.28,0.548,10
+desvío vs nacional (pts),kmeans,4,0.291,0.637,1
+desvío vs nacional (pts),kmeans,5,0.279,0.698,2
+desvío vs nacional (pts),kmeans,6,0.279,0.739,1
+desvío vs nacional (pts),ward,2,0.325,0.411,13
+desvío vs nacional (pts),ward,3,0.288,0.531,7
+desvío vs nacional (pts),ward,4,0.284,0.628,2
+desvío vs nacional (pts),ward,5,0.277,0.693,2
+desvío vs nacional (pts),ward,6,0.289,0.738,2
