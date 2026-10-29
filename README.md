@@ -73,6 +73,8 @@ Según los diccionarios incluidos en los paquetes, la fuente son los cuadernillo
 
 ## Criterios de análisis
 
+La [distribución de las 32 entidades en las tres regiones](docs/regionalizacion_tres_regiones.md) documenta las claves, la asignación y su uso en los análisis.
+
 La regionalización en norte, centro y sur es una **propuesta propia del proyecto basada en información del INEGI**; no constituye una división oficial del INEGI. La referencia específica utilizada queda pendiente de documentar.
 
 En el maestro local, la participación se calcula como `SV / (SV + NV) × 100`: participación entre registros con situación especificada. Si el denominador es cero, el porcentaje queda sin valor. Para consolidar grupos se suman primero los conteos y después se recalcula el porcentaje. El porcentaje de registros no especificados se analiza por separado para contextualizar los resultados.
