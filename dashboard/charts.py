@@ -1,6 +1,7 @@
 """Gráficas interactivas de las tablas publicadas, sin recalcular perfiles."""
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 from dashboard.data import COLORS, NAMES, YEARS
 
@@ -43,6 +44,38 @@ def age_chart(segments, tokens, year):
                       hovertemplate="%{customdata[0]} · %{x} años<br>%{customdata[1]}<br>Participación: %{y:.2f}%<extra></extra>")
     fig.update_xaxes(title="Edad cumplida", dtick=10)
     return finish(fig, tokens, height=470)
+
+
+def age_bars(segments, tokens, year):
+    """Barras contiguas por edad y paneles por sexo, como la figura del README."""
+    sexes = [s for s in ["Hombres", "Mujeres"] if s in set(segments.sexo)]
+    fig = make_subplots(rows=len(sexes), cols=1, shared_xaxes=True,
+                         vertical_spacing=.16 if len(sexes) > 1 else 0,
+                         subplot_titles=sexes)
+    seen = set()
+    for row, sex in enumerate(sexes, start=1):
+        for p, name in NAMES.items():
+            group = segments[(segments.sexo == sex) & (segments.perfil == p)].sort_values("edad")
+            if group.empty:
+                continue
+            fig.add_trace(go.Bar(
+                x=group.edad, y=group[str(year)], width=1, name=name, legendgroup=str(p),
+                showlegend=p not in seen, marker=dict(color=COLORS[p], line_width=0),
+                customdata=group[["sexo", "nombre"]].to_numpy(),
+                hovertemplate="%{customdata[0]} · %{x} años<br>%{customdata[1]}<br>Participación: %{y:.2f}%<extra></extra>"
+            ), row=row, col=1)
+            seen.add(p)
+    finish(fig, tokens, height=640 if len(sexes) == 2 else 400)
+    fig.update_layout(barmode="overlay", bargap=0, margin=dict(l=15, r=20, t=35, b=75),
+                       legend=dict(y=-.17, traceorder="normal"))
+    # Puede haber un perfil que aparezca por primera vez en el segundo panel.
+    fig.data = tuple(sorted(fig.data, key=lambda trace: list(NAMES.values()).index(trace.name)))
+    fig.update_xaxes(range=[segments.edad.min()-.5, segments.edad.max()+.5], dtick=10)
+    fig.update_xaxes(title="Edad cumplida", row=len(sexes), col=1)
+    fig.update_yaxes(title=f"Participación {year} (%)")
+    for annotation in fig.layout.annotations:
+        annotation.update(x=0, xanchor="left", font=dict(color=tokens["text"], size=16))
+    return fig
 
 
 def share_chart(history, tokens):

@@ -5,7 +5,7 @@ import streamlit as st
 
 from dashboard import charts
 from dashboard.data import (COLORS, NAMES, PRESIDENTIAL, REPORTS, YEARS, csv_bytes,
-                            filter_segments, previous_same_cycle, read_tables)
+                            filter_segments, previous_same_cycle, profile_tables, read_tables)
 from dashboard.theme import apply_theme, profile_card
 
 st.set_page_config(page_title="Perfiles de participación · INE 2026", page_icon="◈",
@@ -52,6 +52,24 @@ def overview(data, profiles, year, tokens):
         with col:
             profile_card(p, NAMES[p], COLORS[p], row.participacion_pct, change, row.pct_lista_2024)
     st.caption("Las variaciones comparan elecciones del mismo tipo. La proporción de lista nominal siempre corresponde a 2024 y puede no sumar 100% al seleccionar solo algunos perfiles.")
+    st.subheader(f"Perfil de cada sexo y edad · {year}")
+    st.caption("El color identifica el perfil; la altura de cada barra muestra la participación observada en esa edad. Hombres y mujeres se presentan en paneles separados.")
+    segments = data["segments"][data["segments"].perfil.isin(profiles)]
+    chart(charts.age_bars(segments, tokens, year), "overview_age_bars")
+    summary, trajectory = profile_tables(data, profiles, year)
+    st.subheader("Los cuatro perfiles" if len(profiles) == 4 else "Perfiles seleccionados")
+    st.dataframe(summary, hide_index=True, width="stretch", column_config={
+        "% de lista nominal (2024)": st.column_config.NumberColumn(format="%.1f%%"),
+        f"Participación {year} (%)": st.column_config.NumberColumn(format="%.1f%%"),
+    })
+    st.caption(f"Edades y asignaciones construidas con las seis elecciones. La composición de lista nominal corresponde a 2024; la participación corresponde a {year} y usa SV / (SV + NV).")
+    download_table(summary, f"resumen_perfiles_{year}.csv", "Descargar resumen de perfiles")
+    st.subheader("Participación de los perfiles por elección")
+    st.dataframe(trajectory, hide_index=True, width="stretch", column_config={
+        str(y): st.column_config.NumberColumn(format="%.1f%%") for y in YEARS
+    })
+    st.caption("Porcentaje entre registros con situación especificada, por elección. NS no se contabiliza como abstención.")
+    download_table(trajectory, "participacion_perfiles_seis_elecciones.csv", "Descargar tabla histórica")
     left, right = st.columns([1.35, 1], gap="large")
     with left:
         st.subheader("Seis elecciones, cuatro trayectorias")
@@ -68,7 +86,7 @@ def overview(data, profiles, year, tokens):
 
 def demographics(data, profiles, year, tokens):
     heading("EXPLORACIÓN / SEXO Y EDAD", "¿Quiénes componen cada perfil?",
-            "Cada punto es una combinación de sexo y edad exacta. Los colores conservan la asignación construida con las seis elecciones.")
+            "Compara la participación por edad exacta en paneles de hombres y mujeres. Los colores conservan la asignación construida con las seis elecciones.")
     c1, c2 = st.columns([1, 2])
     with c1:
         sexes = st.multiselect("Sexo", ["Hombres", "Mujeres"], default=["Hombres", "Mujeres"], key="sexes")
@@ -79,7 +97,11 @@ def demographics(data, profiles, year, tokens):
         st.info("No hay segmentos para esta combinación. Amplía la edad, el sexo o los perfiles seleccionados.")
         return
     st.caption(f"{len(selected)} combinaciones de sexo y edad · Participación {year} · Asignaciones nacionales fijas")
-    chart(charts.age_chart(selected, tokens, year), "age_scatter")
+    view = st.radio("Representación", ["Barras por sexo", "Dispersión"], horizontal=True, key="age_view")
+    if view == "Barras por sexo":
+        chart(charts.age_bars(selected, tokens, year), "age_bars")
+    else:
+        chart(charts.age_chart(selected, tokens, year), "age_scatter")
     st.subheader("Asignación por sexo y edad")
     chart(charts.profile_matrix(selected, tokens), "profile_matrix")
     st.caption("Los filtros seleccionan segmentos; no recalculan perfiles ni una tasa agregada. Las tasas por edad no se promedian para producir un total.")

@@ -20,8 +20,8 @@ En otros sistemas puede usarse un entorno virtual equivalente y `python -m strea
 
 | Vista | Fuente | Filtros y alcance |
 | --- | --- | --- |
-| Panorama | `trayectorias_perfiles.csv` | Perfil y elección; participación nacional. La proporción de lista nominal siempre es de 2024. |
-| Sexo y edad | `asignacion_segmentos_sexo_edad.csv`, `composicion_perfiles.csv` | Perfil, sexo, edad y elección; muestra tasas por segmento, sin calcular promedios agregados. |
+| Panorama | Asignaciones, composición y trayectorias | Barras por edad en paneles de hombres y mujeres, tabla de perfiles y tabla de seis elecciones. Perfil y elección; la proporción de lista nominal siempre es de 2024. |
+| Sexo y edad | `asignacion_segmentos_sexo_edad.csv`, `composicion_perfiles.csv` | Perfil, sexo, edad y elección; barras separadas por sexo o dispersión, sin calcular promedios agregados. |
 | Evolución | `trayectorias_perfiles.csv` | Perfil y tipo de elección; serie nacional 2009–2024. |
 | Territorio | `perfiles_region_tipo_comparacion.csv` | Perfil y región, tipo de sección o ambos; exclusivamente 2024. |
 | Metodología | Comparación de algoritmos y documentación | Definiciones, selección de cuatro perfiles, límites y descargas. |

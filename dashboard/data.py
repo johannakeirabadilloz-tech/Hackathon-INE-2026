@@ -61,3 +61,23 @@ def previous_same_cycle(year):
 
 def csv_bytes(frame):
     return frame.to_csv(index=False).encode("utf-8-sig")
+
+
+def profile_tables(data, profiles, year):
+    """Tablas del README: composición y trayectoria, con denominadores explícitos."""
+    composition = data["composition"].pivot(index="perfil_numero", columns="sexo", values="edades")
+    current = data["history"].query("anio == @year").set_index("perfil")
+    rows = []
+    for p in sorted(profiles):
+        rows.append({"#": p, "Perfil": NAMES[p], "Hombres (años)": composition.loc[p, "hombres"],
+                     "Mujeres (años)": composition.loc[p, "mujeres"],
+                     "% de lista nominal (2024)": current.loc[p, "pct_lista_2024"],
+                     f"Participación {year} (%)": current.loc[p, "participacion_pct"]})
+    summary = pd.DataFrame(rows)
+    history = data["history"][data["history"].perfil.isin(profiles)]
+    trajectory = history.pivot(index="perfil", columns="anio", values="participacion_pct").reindex(sorted(profiles))
+    trajectory.insert(0, "Perfil", [NAMES[p] for p in trajectory.index])
+    trajectory = trajectory.rename(columns={y: str(y) for y in YEARS})
+    trajectory.index.name = "#"
+    trajectory.columns.name = None
+    return summary, trajectory.reset_index()
