@@ -33,6 +33,12 @@ def download_table(df, name, label="Descargar tabla CSV"):
     st.download_button(label, csv_bytes(df), file_name=name, mime="text/csv", key="download_" + name)
 
 
+def render_table(frame, percent_columns=(), hide_index=True):
+    # Las tablas HTML permiten aplicar el tema completo, incluido el encabezado.
+    formats = {column: "{:.1f}%" for column in percent_columns}
+    st.table(frame.style.format(formats), hide_index=hide_index)
+
+
 def overview(data, profiles, year, tokens):
     heading("RETO 1 / PANEL ESTADÍSTICO", "La participación tiene distintos perfiles",
             "Explora cuatro tipologías nacionales por sexo y edad. Compara su participación histórica y las diferencias territoriales.")
@@ -58,16 +64,11 @@ def overview(data, profiles, year, tokens):
     chart(charts.age_bars(segments, tokens, year), "overview_age_bars")
     summary, trajectory = profile_tables(data, profiles, year)
     st.subheader("Los cuatro perfiles" if len(profiles) == 4 else "Perfiles seleccionados")
-    st.dataframe(summary, hide_index=True, width="stretch", column_config={
-        "% de lista nominal (2024)": st.column_config.NumberColumn(format="%.1f%%"),
-        f"Participación {year} (%)": st.column_config.NumberColumn(format="%.1f%%"),
-    })
+    render_table(summary, ["% de lista nominal (2024)", f"Participación {year} (%)"])
     st.caption(f"Edades y asignaciones construidas con las seis elecciones. La composición de lista nominal corresponde a 2024; la participación corresponde a {year} y usa SV / (SV + NV).")
     download_table(summary, f"resumen_perfiles_{year}.csv", "Descargar resumen de perfiles")
     st.subheader("Participación de los perfiles por elección")
-    st.dataframe(trajectory, hide_index=True, width="stretch", column_config={
-        str(y): st.column_config.NumberColumn(format="%.1f%%") for y in YEARS
-    })
+    render_table(trajectory, [str(y) for y in YEARS])
     st.caption("Porcentaje entre registros con situación especificada, por elección. NS no se contabiliza como abstención.")
     download_table(trajectory, "participacion_perfiles_seis_elecciones.csv", "Descargar tabla histórica")
     left, right = st.columns([1.35, 1], gap="large")
@@ -81,7 +82,7 @@ def overview(data, profiles, year, tokens):
     with st.container(border=True):
         st.subheader("Cómo leer los perfiles")
         st.write("Los niveles de participación cambian de forma continua con la edad. Los cuatro perfiles resumen ese patrón; sus límites no son umbrales naturales ni describen decisiones individuales.")
-        st.write("El perfil 4, Valores atípicos, incluye hombres de 93–99 y mujeres de 90–99 años. Su nombre no implica errores ni una detección estadística de anomalías.")
+        st.write("El perfil 4, VALORES ATÍPICOS, incluye hombres de 93–99 y mujeres de 90–99 años. Su nombre no implica errores ni una detección estadística de anomalías.")
 
 
 def demographics(data, profiles, year, tokens):
@@ -113,7 +114,7 @@ def demographics(data, profiles, year, tokens):
             st.caption("La ficha muestra la definición completa, independientemente del rango de edad visible.")
     table = selected[["perfil", "nombre", "sexo", "edad", str(year)]].rename(columns={str(year): "participacion_pct"})
     with st.expander("Consultar los valores de la gráfica"):
-        st.dataframe(table, hide_index=True, width="stretch")
+        render_table(table, ["participacion_pct"])
     download_table(table, f"perfiles_sexo_edad_{year}.csv")
 
 
@@ -131,7 +132,7 @@ def evolution(data, profiles, year, tokens):
     st.caption("Las tasas publicadas están redondeadas a un decimal. Las líneas conectan cortes agregados; no siguen a las mismas personas entre elecciones.")
     st.subheader("Participación por perfil y elección")
     pivot = selected.pivot(index="nombre", columns="anio", values="participacion_pct")
-    st.dataframe(pivot, width="stretch")
+    render_table(pivot, pivot.columns, hide_index=False)
     download_table(selected[["perfil", "nombre", "anio", "tipo_eleccion", "participacion_pct"]], "trayectorias_perfiles.csv")
 
 
@@ -153,10 +154,10 @@ def territory(data, profiles, tokens):
         st.info("Sur rural presenta una forma por edad menos parecida al patrón nacional; conviene interpretarlo como un contexto particular.")
     st.subheader("Valores observados en 2024")
     table = selected[["grupo", "perfil", "nombre", "participacion_pct", "anio"]]
-    st.dataframe(table, hide_index=True, width="stretch")
+    render_table(table, ["participacion_pct"])
     download_table(table, "participacion_territorial_2024.csv")
     with st.expander("Diferencias de nivel y concordancia con los perfiles nacionales"):
-        st.dataframe(selected[["grupo", "nivel_vs_nacional_pts", "ari_perfiles_propios_vs_nacional"]].drop_duplicates(), hide_index=True, width="stretch")
+        render_table(selected[["grupo", "nivel_vs_nacional_pts", "ari_perfiles_propios_vs_nacional"]].drop_duplicates())
         st.caption("El ajuste de nivel resume 2009–2024. No debe sumarse automáticamente a tasas de otro corte para predecir participación. ARI mide concordancia de agrupaciones, no exactitud.")
 
 
@@ -171,7 +172,7 @@ def methodology(data):
     st.markdown("**Participación entre especificados:** `SV / (SV + NV) × 100`.\n\n**No especificados:** `NS / LN × 100`. NS no se considera abstención.\n\n**Composición del perfil:** proporción de la lista nominal analizada en 2024; usa un denominador diferente al de participación.")
     st.subheader("Por qué cuatro perfiles")
     st.write("Se compararon K-means y Ward con dos a seis grupos. La propuesta utiliza K-means con cuatro perfiles por interpretabilidad y estabilidad. Dos grupos tienen mayor silhouette; cuatro es una decisión analítica, no una prueba de cuatro tipos naturales de ciudadanía.")
-    st.dataframe(data["comparison"], hide_index=True, width="stretch")
+    render_table(data["comparison"])
     st.subheader("Cobertura y límites")
     st.markdown("- Perfiles de hombres y mujeres de 18–99 años; la categoría no binario solo tiene registros en 2024 y se conserva en una tabla descriptiva aparte.\n- Las edades de 100 o más quedan fuera de estos perfiles.\n- Los mismos rangos de edad no representan a las mismas personas a lo largo del tiempo.\n- No hay escolaridad, ingreso ni motivos para votar en estas tablas.\n- Norte, centro y sur son una regionalización propia del proyecto.\n- Los cuadernillos no incluyen voto desde el extranjero ni participación en casillas especiales.\n- Los perfiles no identifican causas; las estrategias de educación cívica requieren validación.")
     with st.expander("Ver la cobertura de registros no especificados"):

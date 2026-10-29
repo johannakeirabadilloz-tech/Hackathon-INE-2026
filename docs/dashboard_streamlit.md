@@ -36,7 +36,9 @@ Todas las fuentes están publicadas en `reports/perfiles_sexo_edad/`. No se carg
 - Las tasas nacionales publicadas están redondeadas a un decimal.
 - No hay conteos desagregados en las tablas por edad publicadas: la app no inventa totales al filtrar edad o sexo.
 - Región y sección son contexto de perfiles nacionales; no se suman ajustes territoriales para fabricar tasas de cruces ausentes.
-- Los valores atípicos son el nombre del perfil 4, no un resultado de detección de anomalías.
+- VALORES ATÍPICOS es el nombre del perfil 4, no un resultado de detección de anomalías.
+
+Las tablas se muestran en HTML con el mismo tema que el panel, incluidos encabezados y filas. Las descargas CSV conservan los datos numéricos. El tema también se aplica a botones, menús y controles para plegar el sidebar.
 
 ## Comprobaciones
 

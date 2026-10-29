@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from config import PROC, TABLAS, GRAFICAS, RAIZ, ANIOS
 from estilo import PAL, plt as _p
 OUT = RAIZ / "reports/perfiles_sexo_edad"; OUT.mkdir(parents=True, exist_ok=True)
-NOM = {1: "1. PARTICIPACIÓN ALTA", 2: "2. PARTICIPACIÓN INTERMEDIA", 3: "3. PARTICIPACION BAJA", 4: "4. Valores atípicos"}
+NOM = {1: "1. PARTICIPACIÓN ALTA", 2: "2. PARTICIPACIÓN INTERMEDIA", 3: "3. PARTICIPACION BAJA", 4: "4. VALORES ATÍPICOS"}
 COL = {1: PAL[0], 2: PAL[2], 3: PAL[3], 4: PAL[1]}
 def guardar(fig, n): fig.savefig(OUT / n, dpi=150, bbox_inches="tight", facecolor="white"); plt.close(fig)
 

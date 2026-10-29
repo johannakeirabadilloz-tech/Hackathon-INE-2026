@@ -11,7 +11,7 @@ NAMES = {
     1: "PARTICIPACIÓN ALTA",
     2: "PARTICIPACIÓN INTERMEDIA",
     3: "PARTICIPACION BAJA",
-    4: "Valores atípicos",
+    4: "VALORES ATÍPICOS",
 }
 COLORS = {1: "#1B6CA8", 2: "#2A9D8F", 3: "#E9A23B", 4: "#D1495B"}
 SEXES = {0: "Hombres", 1: "Mujeres"}
