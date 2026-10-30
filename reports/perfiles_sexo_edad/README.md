@@ -9,7 +9,7 @@ Propuesta de cuatro perfiles nacionales de participación electoral, construidos
 ## 1. Resumen
 
 - Los grupos que se comportan de forma parecida se definen por **sexo y edad**, y se repiten en todo el país. Cuatro perfiles resumen ese patrón.
-- La **región** y el **tipo de sección** (urbana, mixta o rural) mueven sobre todo el *nivel* de participación y poco su *forma*. Por eso se tratan como un ajuste y no como perfiles distintos.
+- La **región** y el **tipo de sección** (urbana, mixta o rural) mueven sobre todo el *nivel* de participación en el norte, el centro, la zona urbana y la mixta, y por eso se tratan como un ajuste y no como perfiles distintos. **El sur y las secciones rurales son la excepción:** además del nivel cambia el patrón por edad.
 - El **ciclo electoral** pesa mucho: en promedio, todos los perfiles suben entre 10 y 14 puntos en las elecciones presidenciales (2012, 2018 y 2024) frente a las intermedias (2009, 2015 y 2021).
 - Dentro de una misma región hay mucha variación entre **municipios**, que se estudia aparte.
 
@@ -48,7 +48,7 @@ Participación entre registros con situación especificada (votos entre votos m�
 
 ### 3.1 Por qué sexo y edad juntos
 
-La edad es el factor principal, y el sexo cambia a qué edad empieza y termina cada nivel. En 2024, las mujeres participan más que los hombres entre los 18 y los 65 años, con una diferencia máxima de unos 13.5 puntos a los 35 años; desde los 75 años la relación se invierte, y a los 85 son unos 8 puntos menos.
+La edad es el factor principal, y el sexo cambia a qué edad empieza y termina cada nivel. En 2024, las mujeres participan más que los hombres hasta los 66 años, con una diferencia máxima de 14 puntos a los 29 años; desde los 67 la relación se invierte, y a los 85 son unos 8 puntos menos.
 
 ![Brecha de participación entre mujeres y hombres por edad, 2024](fig6_brecha_por_sexo_y_edad.png)
 
@@ -79,26 +79,53 @@ Se compararon las curvas de sexo × edad × elección por región y por tipo de 
 
 ![Curvas de participación 2024 por región y por tipo de sección](fig5_curvas_por_region_y_tipo.png)
 
-La región y el tipo de sección difieren sobre todo en nivel:
+Las diferencias frente a la curva nacional se pueden separar en dos partes: el **nivel** (cuánto más o menos participa el grupo en promedio) y lo que **queda después de quitarlo**, que recoge diferencias en el patrón por edad y de una elección a otra:
 
 ![Ajuste por lugar](fig3_ajuste_por_lugar.png)
 
-| Lugar | Ajuste (puntos) |
-|---|---|
-| Norte | −3.7 |
-| Centro | +1.0 |
-| Sur | +2.3 |
-| Urbana | −1.1 |
-| Mixta | +0.3 |
-| Rural | +4.1 |
+| Lugar | Nivel frente al nacional (puntos) | Lo que queda tras quitar el nivel (puntos) |
+|---|---|---|
+| Norte | −3.7 | 1.5 |
+| Centro | +1.0 | 1.1 |
+| Sur | +2.3 | 2.7 |
+| Urbana | −1.1 | 1.2 |
+| Mixta | +0.3 | 1.4 |
+| Rural | +4.1 | 3.6 |
+| Sur rural | +6.7 | 4.8 |
 
-**Excepción: las secciones rurales, sobre todo las del sur.** Ahí cambia también la *forma* del patrón por edad y los perfiles propios coinciden menos con los nacionales (ARI de 0.73 en rural, 0.64 en sur rural). Se recomienda tratarlas como un caso aparte.
+**Excepción: el sur y las secciones rurales, sobre todo el sur rural.** Ahí lo que queda después de quitar el nivel es tan grande como el nivel o más, y los perfiles propios coinciden menos con los nacionales (ARI de 0.73 en rural y 0.64 en sur rural). Se recomienda tratarlas como un caso aparte.
 
 **Matiz.** Que 95% de la variación se explique con edad y sexo no vuelve irrelevante el lugar: la edad domina tanto que 4 a 7 puntos de diferencia por región o tipo siguen siendo relevantes en la práctica.
 
 ### 3.4 El lugar importa más a nivel de municipio que de región
 
 En un análisis por municipio (≈1,600 municipios con datos suficientes en 2024), la diferencia de participación entre adultos de 35–64 y jóvenes de 18–34 va de **7.9 a 21.6 puntos** entre municipios (percentiles 10 a 90), y la de 35–64 frente a 85+ de 14.0 a 33.3. La entidad explica 41% y 28% de esa variación; el resto ocurre dentro de la entidad. Por eso la región es un descriptor grueso, y el detalle territorial se presenta como una capa aparte (mapas y análisis espacial en el [README principal](../../README.md)).
+
+### 3.5 Los perfiles por municipio (capa territorial)
+
+`scripts/21_mapas_perfiles.py` lleva los cuatro perfiles al nivel de municipio en 2024, con dos medidas distintas: la **composición** (qué proporción de la lista nominal del municipio pertenece a cada perfil) y la **participación de cada perfil en el municipio**, frente a su valor nacional.
+
+![Participación de cada perfil en cada municipio frente a su valor nacional, 2024](fig7_mapa_participacion_por_perfil_2024.png)
+
+![Composición de cada municipio por perfil, 2024](fig8_mapa_composicion_por_perfil_2024.png)
+
+![Participación observada, esperada solo por composición y diferencia, 2024](fig9_mapa_composicion_vs_lugar_2024.png)
+
+**Qué muestran** (2,463 municipios con datos suficientes):
+
+1. **Los municipios se parecen mucho en quién vive en ellos.** La proporción de lista nominal en el perfil 3 tiene una mediana de 19.3% (nacional: 19.6%), con un rango de 16.7% a 22.0% entre el percentil 10 y el 90.
+2. **Esa composición casi no explica su participación.** Si cada perfil participara en un municipio como lo hace a nivel nacional, la participación esperada por composición variaría solo 0.9 puntos entre municipios (desviación estándar), frente a 11.5 puntos de la participación observada. La relación entre ambas es prácticamente nula (R² = 0.000). Las diferencias entre municipios se deben a **cuánto participa cada perfil allí**, no a la mezcla de sexo y edad.
+3. **El efecto del lugar es en buena medida común a los tres perfiles.** Los municipios donde un perfil participa más que su valor nacional suelen ser los mismos para los otros: la correlación entre perfiles va de 0.73 a 0.92. La entidad explica entre 38% y 48% de esa variación. Esto respalda tratar el lugar como un ajuste de nivel.
+4. **La forma también varía.** La diferencia entre el perfil 1 y el perfil 3 dentro de un municipio va de 16 a 40 puntos (percentiles 10 a 90), frente a 27 a nivel nacional.
+5. **Lectura a ojo de los mapas:** la participación de los tres perfiles es mayor que la nacional en la península de Yucatán y menor en Baja California y parte de Sonora, lo que coincide con los ajustes de nivel por región.
+
+**Avisos:**
+- **Las geometrías son un dato externo al INE:** vienen del Marco Geoestadístico 2020 de INEGI, por una copia local en `data/external/` (ignorada por Git), y solo se usan para dibujar. Los 2,477 municipios de 2024 no se unen todos (los creados después de 2020 no tienen polígono).
+- **Datos insuficientes.** Los mapas de participación exigen al menos 100 registros especificados por municipio y perfil. El perfil 4 solo cumple en 736 municipios y por eso no se muestra.
+- **La escala de los mapas de composición está recortada** a los percentiles 2 y 98, lo que hace parecer grandes diferencias que en realidad son de pocos puntos.
+- **Los municipios grandes en superficie dominan visualmente** aunque tengan pocas personas, y los pequeños tienen más ruido.
+- **Son asociaciones, no causas.** Y el padrón puede contener registros de personas que ya no residen en el municipio.
+- La media de la diferencia entre participación observada y esperada (+2.9 puntos) es de los municipios sin ponderar; los municipios pequeños participan más que los grandes.
 
 ## 4. Cómo se trataron los datos
 
@@ -169,6 +196,7 @@ Con los datos originales de `data/raw/` procesados por `scripts/01_etl_calidad.p
 | `18_perfiles_por_region_tipo.py` | Compara los perfiles por región y tipo de sección |
 | `19_revision_ns_nobinario.py` | Revisión de no especificados, no binarios y sensibilidad |
 | `20_figuras_perfiles.py` | Genera las figuras y tablas de esta carpeta |
+| `21_mapas_perfiles.py` | Mapas municipales de composición y participación por perfil (fig7 a fig9) |
 
 Las dependencias están en `requirements-analysis.txt`. Semilla fija: 42.
 
@@ -179,7 +207,8 @@ Las dependencias están en `requirements-analysis.txt`. Semilla fija: 42.
 - `asignacion_segmentos_sexo_edad.csv`: perfil de cada combinación de sexo y edad.
 - `perfiles_edad_sexo_comparacion.csv`: comparación de 2 a 6 grupos.
 - `perfiles_region_tipo_comparacion.csv`: comparación por región y tipo de sección.
-- `fig1`–`fig6`: figuras de este documento.
+- `fig1`–`fig9`: figuras de este documento.
+- `municipios_perfiles_2024.csv`: composición, participación por perfil y diferencia con lo esperado por municipio, 2024.
 
 ## 10. Referencias
 

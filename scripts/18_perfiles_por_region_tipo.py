@@ -31,13 +31,14 @@ for nombre, by in (("region", ["region"]), ("tipo", ["tipo"]), ("region_x_tipo",
         b = P0.loc[idx]
         # nivel y forma frente al nacional (ponderado por tamaño)
         dif = (P - b); nivel = float(np.average(dif.mean(axis=1), weights=W)); rmse = float(np.sqrt(np.average((dif ** 2).mean(axis=1), weights=W)))
-        rmse_forma = float(np.sqrt(np.average(((dif.sub(dif.mean(axis=1), axis=0)) ** 2).mean(axis=1), weights=W)))
+        # error que queda al quitar el nivel del grupo (diferencia de forma por edad y de una elección a otra); descomposición exacta: rmse² = nivel² + varianza
+        rmse_forma = float(np.sqrt(max(rmse ** 2 - nivel ** 2, 0.0)))
         # perfil propio (k=4) frente al nacional
         lab = KMeans(K, n_init=30, random_state=SEED).fit_predict(StandardScaler().fit_transform(P.values))
         ari = adjusted_rand_score(L0.loc[idx], lab)
         # perfil nacional asignado por centroides nacionales -> participación del grupo por perfil nacional
         pp = {f"perfil{k}_2024": float(np.average(P.loc[L0.loc[idx] == k, 2024], weights=W[L0.loc[idx] == k])) for k in range(1, K + 1)}
-        filas.append(dict(corte=nombre, grupo=" / ".join(gk), nivel_vs_nacional_pts=nivel, rmse_total_pts=rmse, rmse_forma_pts=rmse_forma,
+        filas.append(dict(corte=nombre, grupo=" / ".join(gk), nivel_vs_nacional_pts=nivel, rmse_total_pts=rmse, rmse_sin_nivel_pts=rmse_forma,
                           ari_perfiles_propios_vs_nacional=ari, **pp))
         curvas[(nombre, " / ".join(gk))] = P[2024]
 R = pd.DataFrame(filas).round(2); R.to_csv(TABLAS / "perfiles_region_tipo_comparacion.csv", index=False); print(R.to_string(index=False))

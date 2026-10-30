@@ -10,3 +10,4 @@ geopandas>=1.0
 libpysal>=4.12
 esda>=2.6
 openpyxl>=3.1
+pyarrow>=15

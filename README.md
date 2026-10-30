@@ -64,7 +64,7 @@ LightGBM con SHAP sobre datos del INE. Scripts: `09_boosting_shap.py` (celdas mu
 
 - **No supera a una regla simple.** Con edad simple, R² ponderado de 0.80 y error medio de 4.7 puntos, igual que una tabla de medias o que repetir la celda de 2018. Con grupos de edad y municipio llega a 0.74, frente a 0.62 sin municipio: saber el lugar aporta unos 12 puntos de R².
 - **Edad y tipo de elección dominan.** Importancia SHAP media: edad 11.6 puntos, elección presidencial 5.5, entidad 3.5, sexo 2.1 y tipo de sección 1.7 (modelo con edad simple).
-- **El sexo cambia el patrón por edad.** Hasta cerca de los 65 años las mujeres participan más que los hombres (hasta 13.5 puntos en 2024 a los 35); desde los 75 años la relación se invierte (≈8 puntos menos en mujeres a los 85).
+- **El sexo cambia el patrón por edad.** Hasta los 66 años las mujeres participan más que los hombres (hasta 14 puntos en 2024 a los 29 años); desde los 67 la relación se invierte (≈8 puntos menos en mujeres a los 85).
 - **La participación a los 18 años sube** (≈58% en hombres y 65% en mujeres en 2024) frente a la de los 20 a 29 años (≈41% y 53%).
 - **El modelo subestima a 85+ en 2024** (predice 44.6% y 36.1% en hombres y mujeres, contra 50.3% y 41.6% observados) y sobreestima a 18–64: el patrón por edad de 2024 se desvió de la tendencia previa.
 
